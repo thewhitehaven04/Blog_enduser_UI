@@ -1,34 +1,33 @@
-import { QueryClientProvider, useQuery } from '@tanstack/react-query'
-import { qc } from 'Client/index'
+import { QueryError } from 'Components/Common/QueryError'
+import { usePagination } from 'Hooks/pagination'
+import { useComments } from 'Hooks/queries/comments'
 import { useParams } from 'react-router-dom'
 
-export const CommentSection = (): JSX.Element => {
-  const { id } = useParams<'id'>()
+export function CommentSection(): JSX.Element {
+  const { postId } = useParams<'postId'>()
+  const paginationParams = usePagination()
 
-  const { isError, isPending, data } = useQuery({
-    queryFn: () =>
-      fetch(`localhost:3000/posts/${id}/comment`).then(
-        (res) => res.json() as Promise<{ text: string }[]>
-      ),
-    queryKey: ['comments']
-  })
+  const { isPending, isError, error } = useComments(
+    postId ?? '',
+    paginationParams
+  )
 
   if (isPending) {
     return <span>Waiting for comments to load</span>
   }
 
   if (isError) {
-    return <span>kek</span>
+    return <QueryError errorText={error.message} />
   }
 
   return (
-    <QueryClientProvider client={qc}>
+    <>
       <span>comments</span>
       <ul>
-        {data.map((comment) => (
+        {data.data.map((comment) => (
           <li>{comment.text}</li>
         ))}
       </ul>
-    </QueryClientProvider>
+    </>
   )
 }

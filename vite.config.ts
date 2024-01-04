@@ -43,6 +43,10 @@ export default defineConfig({
       {
         find: 'Router',
         replacement: path.resolve(__dirname, './src/router')
+      },
+      {
+        find: 'Errors',
+        replacement: path.resolve(__dirname, './src/errors')
       }
     ]
   }

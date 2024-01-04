@@ -5,10 +5,10 @@ module.exports = {
     es2021: true
   },
   extends: [
-    'plugin:@tanstack/eslint-plugin-query/recommended',
     'standard-jsx',
     'standard-react',
     'standard-with-typescript',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
     'prettier'
   ],
   overrides: [],
