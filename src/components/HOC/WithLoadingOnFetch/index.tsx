@@ -1,21 +1,20 @@
+import { type UseQueryResult } from '@tanstack/react-query'
 import { type IDataResponse } from 'Client/base/types/responses'
 import { QueryError } from 'Components/Common/QueryError'
-import { type TQueryState } from 'Components/HOC/WithLoadingOnFetch/types'
 import { type FC } from 'react'
 
-export function WithLoadingOnFetch<T>(
-  component: FC<{ value: T }>,
-  state: TQueryState<IDataResponse<T>>
-) {
-  return function () {
-    const { isPending, error, data } = state
-
-    if (!isPending && error == null) {
-      return component({ value: data })
-    } else if (isPending) {
+export function withLoadingOnFetch<T>(component: FC<{ value: T }>) {
+  return function ({
+    status,
+    data,
+    error
+  }: UseQueryResult<IDataResponse<T>, Error>) {
+    if (status === 'success' && data?.success) {
+      return component({ value: data.data })
+    } else if (status === 'pending') {
       return <span>Loading</span>
     }
 
-    return <QueryError errorText={error} />
+    return <QueryError errorText={error?.message ?? 'Unknown error'} />
   }
 }

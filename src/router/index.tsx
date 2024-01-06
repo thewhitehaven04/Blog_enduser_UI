@@ -1,11 +1,11 @@
-import { CommentSection } from 'Components/CommentSection'
+import { PostPage } from 'Pages/Post'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-export function AppRouter() {
+export function AppRouter(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/post/:postId' element={<CommentSection />} />
+        <Route path='/post/:postId' element={<PostPage/>} />
       </Routes>
     </BrowserRouter>
   )

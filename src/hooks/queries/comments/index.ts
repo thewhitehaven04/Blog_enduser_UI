@@ -1,25 +1,21 @@
-import { useQuery } from '@tanstack/react-query'
-import { type TGenericResponse } from 'Client/base/types/responses'
+import { type UseQueryResult, useQuery } from '@tanstack/react-query'
+import { type IDataResponse } from 'Client/base/types/responses'
 import { CommentClientInstance } from 'Client/postComments'
 import { type ITransformedCommentDataDto } from 'Client/postComments/types/responses'
 import { type IPaginationParams } from 'Hooks/pagination/types'
-import { useState } from 'react'
 
-export function useComments(postId: string, params: IPaginationParams) {
-  const [serverErrors, setServerErrors] = useState(null)
-
-  const query = useQuery({
+export function useComments(
+  postId: string,
+  params: IPaginationParams
+): UseQueryResult<IDataResponse<ITransformedCommentDataDto>, Error> {
+  return useQuery({
     queryFn: async () =>
-      await CommentClientInstance.getPostComments(postId ?? '', params).then(
+      await CommentClientInstance.getPostComments(postId, params).then(
         async (res) =>
-          await (res.json() as Promise<TGenericResponse<ITransformedCommentDataDto>>)
+          await (res.json() as Promise<
+            IDataResponse<ITransformedCommentDataDto>
+          >)
       ),
-    queryKey: ['comments', params]
+    queryKey: ['comments', params, postId]
   })
-
-  if (!query.data?.success) {
-    setServerErrors(query.data?.errors)
-  }
-
-  return { ...query, serverErrors }
 }

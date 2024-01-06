@@ -1,10 +1,13 @@
 import appConfig from '@/appConfig'
 import BaseApiClient from 'Client/base'
-import { ICommentRequestParams } from 'Client/postComments/types/requests'
+import { type ICommentRequestParams } from 'Client/postComments/types/requests'
 
 class CommentClient extends BaseApiClient {
-  async getPostComments(postId: string, params: ICommentRequestParams) {
-    return await this.request('GET', `posts/${postId}/comment`, params)
+  async getPostComments(
+    postId: string,
+    params: ICommentRequestParams
+  ): Promise<Response> {
+    return await this.request('GET', `posts/${postId}/comments`, params)
   }
 }
 
