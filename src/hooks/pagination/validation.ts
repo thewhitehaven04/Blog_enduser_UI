@@ -8,5 +8,5 @@ export const PaginationSchema = object({
   count: number()
     .integer()
     .min(1, 'Count must be a positive integer number')
-    .default(5)
+    .default(10)
 })
