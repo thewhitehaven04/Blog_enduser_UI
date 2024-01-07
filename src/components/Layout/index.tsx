@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router'
 import * as SC from './styles'
-import { Row } from 'Components/Common/Row/styles'
+import { Row } from 'Components/Common/Styles/Row/styles'
 
 export function AppLayout(): JSX.Element {
   return (

@@ -1,6 +1,4 @@
 import {
-  type UseQueryResult,
-  useQuery,
   useInfiniteQuery,
   type UseInfiniteQueryResult,
   type InfiniteData
@@ -13,27 +11,11 @@ import { type IPaginationParams } from 'Hooks/pagination/types'
 export function useComments(
   postId: string,
   params: IPaginationParams
-): UseQueryResult<IDataResponse<ITransformedCommentDataDto>, Error> {
-  return useQuery({
-    queryFn: async () =>
-      await CommentClientInstance.getPostComments(postId, params).then(
-        async (res) =>
-          await (res.json() as Promise<
-            IDataResponse<ITransformedCommentDataDto>
-          >)
-      ),
-    queryKey: ['comments', params, postId]
-  })
-}
-
-export function useInfiniteComments(
-  postId: string,
-  params: IPaginationParams
 ): UseInfiniteQueryResult<
   InfiniteData<IDataResponse<ITransformedCommentDataDto>, unknown>,
   Error
 > {
-  const offsetStep = 10
+  const pageSize = 10
 
   return useInfiniteQuery({
     queryFn: async (params) =>
@@ -46,10 +28,16 @@ export function useInfiniteComments(
             IDataResponse<ITransformedCommentDataDto>
           >)
       ),
-    queryKey: ['comments', params, postId],
-    initialPageParam: { offset: 0, count: 10 },
+    queryKey: ['comments', postId],
+    initialPageParam: { offset: 0, count: pageSize },
     getNextPageParam: (lastPage) => {
-      return { offset: lastPage.data.offset + offsetStep, count: params.count }
+      const { data } = lastPage
+      if (data.count > data.offset + pageSize) {
+        return {
+          offset: data.offset + pageSize,
+          count: params.count
+        }
+      }
     }
   })
 }

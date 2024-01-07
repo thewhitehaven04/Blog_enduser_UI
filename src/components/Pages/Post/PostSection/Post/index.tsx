@@ -1,7 +1,7 @@
 import { withLoadingOnFetch } from 'Components/HOC/WithLoadingOnFetch'
 import { type IPostProps } from 'Pages/Post/PostSection/Post/types'
 import * as SC from './styles'
-import { Column } from 'Components/Common/Column/styles'
+import { Column } from 'Components/Common/Styles/Column/styles'
 import { type IFormattedPostDto } from 'Client/posts/types/responses'
 import { toRelativeDate } from 'Pages/Post/CommentSection/Comment/helpers'
 
