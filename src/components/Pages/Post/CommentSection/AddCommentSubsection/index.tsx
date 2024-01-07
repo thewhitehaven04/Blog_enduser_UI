@@ -40,7 +40,7 @@ export function AddCommentSubsection(): JSX.Element {
           <button type='submit'>Submit</button>
         </form>
       ) : (
-        <span>Please, login to leave comments.</span>
+        <span>Please, sign in to leave comments.</span>
       )}
     </SC.SubsectionWrapper>
   )

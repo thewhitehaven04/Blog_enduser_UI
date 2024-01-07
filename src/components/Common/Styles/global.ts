@@ -12,7 +12,7 @@ export const GlobalStyles = createGlobalStyle`
     --deemphasized-text: #666;
     --gray: #6667;
     
-    font-size: 14px;
+    font-size: 12pt;
     font-family: var(--font-sans-serif), sans-serif;
   }
 
@@ -22,5 +22,9 @@ export const GlobalStyles = createGlobalStyle`
 
   * {
     font-family: inherit;
+  }
+
+  body {
+    margin: 0
   }
 `

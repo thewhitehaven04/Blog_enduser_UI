@@ -1,3 +1,5 @@
+import { type TGenericResponse } from 'Client/base/types/responses'
+
 export interface ITransformedCommentDataDto {
   comments: Array<{
     text: string
@@ -10,3 +12,6 @@ export interface ITransformedCommentDataDto {
   count: number
   offset: number
 }
+
+
+export type TPostCommentResponseDto = TGenericResponse<{ id: string }>

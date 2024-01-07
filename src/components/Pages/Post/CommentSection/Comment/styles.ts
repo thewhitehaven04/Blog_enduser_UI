@@ -7,12 +7,14 @@ export const AuthorName = styled.span`
 
 export const CommentDate = styled.span`
   color: var(--deemphasized-text);
-  font-size: 13px;
+  font-size: 12pt;
+  position: relative;
+  left: 6px;
   
   &::before {
     content: '·';
     position: relative;
-    left: -2px;
+    left: -3px;
   }
 `
 

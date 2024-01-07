@@ -1,17 +1,19 @@
-import { type UseMutationResult, useMutation } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import { CommentClientInstance } from 'Client/postComments'
 import { type IPostCommentBody } from 'Client/postComments/types/requests'
-import { qc } from 'Client/query'
+import { type TPostCommentResponseDto } from 'Client/postComments/types/responses'
+import { queryClient } from 'Client/query'
+import { type TUseSubmitCommentResult } from 'Hooks/mutations/submitComment/types'
 
-export function useSubmitComment(
-  postId: string
-): UseMutationResult<any, Error, IPostCommentBody, unknown> {
-  return useMutation<any, Error, IPostCommentBody>({
+export function useSubmitComment(postId: string): TUseSubmitCommentResult {
+  return useMutation<TPostCommentResponseDto, Error, IPostCommentBody>({
     mutationFn: async (comment) =>
-      await CommentClientInstance.postComment(postId, comment),
+      await CommentClientInstance.postComment(postId, comment).then(
+        async (res) => (await res.json()) as TPostCommentResponseDto
+      ),
     mutationKey: ['submitComment', postId],
     onSuccess: async () => {
-      await qc.invalidateQueries({ queryKey: ['comments', postId] })
+      await queryClient.invalidateQueries({ queryKey: ['comments', postId] })
     }
   })
 }

@@ -1,5 +1,5 @@
 import { type Payload } from '@/typings/jwtDecode'
-import { UserContext } from 'Context/user'
+import { UserContext, UserSetContext } from 'Context/user'
 import { type IUserContext } from 'Context/user/types'
 import { getAccessToken } from 'Service/accessToken'
 import { jwtDecode } from 'jwt-decode'
@@ -18,5 +18,11 @@ export function UserContextProvider({
     }
   }, [])
 
-  return <UserContext.Provider value={user}>{children}</UserContext.Provider>
+  return (
+    <UserContext.Provider value={user}>
+      <UserSetContext.Provider value={setUser}>
+        {children}
+      </UserSetContext.Provider>
+    </UserContext.Provider>
+  )
 }
