@@ -4,6 +4,7 @@ import { Row } from 'Components/Common/Styles/Row/styles'
 import { useUserContext } from 'Hooks/context/user'
 import { useState } from 'react'
 import { LoginForm } from 'Components/Login/LoginForm'
+import { Column } from 'Components/Common/Styles/Column/styles'
 
 export function AppLayout(): JSX.Element {
   const [showLoginForm, setShowLoginForm] = useState<boolean>(false)
@@ -22,12 +23,12 @@ export function AppLayout(): JSX.Element {
     <>
       {showLoginForm && user == null && <LoginForm handleClose={handleClose} />}
       <nav>
-        <Row>
+        <Row $justify='end'>
           {user != null ? (
-            <>
+            <Column $alignment='end'>
               <span>{user.email}</span>
               <span>{user.username}</span>{' '}
-            </>
+            </Column>
           ) : (
             <button type='button' onClick={handleLoginButtonClick}>
               Login

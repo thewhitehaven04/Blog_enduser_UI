@@ -7,6 +7,7 @@ import {
 } from 'Components/Login/LoginForm/types'
 import { Input } from 'Components/Common/Input/styles'
 import { useLogin } from 'Hooks/mutations/login'
+import { Row } from 'Components/Common/Styles/Row/styles'
 
 export function LoginForm({ handleClose }: ILoginFormProps): JSX.Element {
   const {
@@ -34,8 +35,8 @@ export function LoginForm({ handleClose }: ILoginFormProps): JSX.Element {
           <SC.FormTitle>Login</SC.FormTitle>
           <SC.FormSubtitle>Let's get you logged in.</SC.FormSubtitle>
         </SC.FormHeaderGrid>
-        <SC.FormContent>
-          <form onSubmit={handleSubmit(submitHandler)}>
+        <form onSubmit={handleSubmit(submitHandler)}>
+          <SC.FormContent>
             <SC.FormFields>
               <ValidatedField
                 label='Username'
@@ -56,12 +57,14 @@ export function LoginForm({ handleClose }: ILoginFormProps): JSX.Element {
                 <Input type='password' {...register('password')} />
               </ValidatedField>
             </SC.FormFields>
-            <button type='submit' onClick={handleSubmit(submitHandler)}>
-              Login
-            </button>
-          </form>
-          <span>Don't have an account? Sign up</span>
-        </SC.FormContent>
+            <Row $justify='center'>
+              <button type='submit' onClick={handleSubmit(submitHandler)}>
+                Login
+              </button>
+            </Row>
+            <span>Don't have an account? Sign up</span>
+          </SC.FormContent>
+        </form>
       </SC.FormWrapper>
     </SC.FormOverlay>
   )

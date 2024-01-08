@@ -3,7 +3,7 @@ import { Column } from 'Components/Common/Styles/Column/styles'
 import styled from 'styled-components'
 
 export const FormWrapper = styled.div`
-  padding: 8px;
+  padding: 24px;
 
   display: grid;
   grid-template-areas:
@@ -44,17 +44,21 @@ export const FormHeaderGrid = styled.div`
 
 export const FormTitle = styled.span`
   grid-area: title;
-  font-size: 18px;
+  font-size: 16pt;
 `
 
 export const FormSubtitle = styled.span`
   grid-area: subtitle;
-  font-size: 14px;
+  font-size: 12pt;
 `
 
 export const FormContent = styled.div`
   grid-area: content;
   padding: 8px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 `
 
 export const FormErrors = styled.div`
@@ -63,6 +67,9 @@ export const FormErrors = styled.div`
 
 export const FormFields = styled(Column)`
   gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `
 
 export const CloseIcon = styled(FontAwesomeIcon)`
