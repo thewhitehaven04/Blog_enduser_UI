@@ -1,36 +1,36 @@
-import { ValidatedField } from 'Components/Common/ValidatedField'
-import * as SC from './styles'
-import { type SubmitHandler, useForm } from 'react-hook-form'
 import {
-  type ILoginFormProps,
-  type ILoginForm
-} from 'Components/Login/LoginForm/types'
-import { Input } from 'Components/Common/Input/styles'
-import { useLogin } from 'Hooks/mutations/login'
-import { Row } from 'Components/Common/Styles/Row/styles'
+  type ISignUpFormProps,
+  type ISignUpForm
+} from 'Components/SignUp/SignupForm/types'
+import { type SubmitHandler, useForm } from 'react-hook-form'
 import { Modal } from 'Components/Common/Modal'
+import { Row } from 'Components/Common/Styles/Row/styles'
+import { ValidatedField } from 'Components/Common/ValidatedField'
+import { Input } from 'Components/Common/Input/styles'
+import * as SC from './styles'
+import { useSignup } from 'Hooks/mutations/signup'
 
-export function LoginForm({
+export function SignUpForm({
   closeHandler,
-  switchToSignUpHandler
-}: ILoginFormProps): JSX.Element {
+  switchToLoginHandler
+}: ISignUpFormProps): JSX.Element {
   const {
     register,
     formState: { errors },
     handleSubmit
-  } = useForm<ILoginForm>()
+  } = useForm<ISignUpForm>()
 
-  const { mutate } = useLogin()
+  const { mutate, isSuccess } = useSignup()
 
-  const submitHandler: SubmitHandler<ILoginForm> = (data) => {
+  const submitHandler: SubmitHandler<ISignUpForm> = (data) => {
     mutate(data)
   }
 
   return (
     <Modal
+      title='Sign up'
+      subtitle="Let's set up an acoount for you."
       handleClose={closeHandler}
-      title='Login'
-      subtitle="Let's log you in."
     >
       <form onSubmit={handleSubmit(submitHandler)}>
         <SC.FormContent>
@@ -45,6 +45,15 @@ export function LoginForm({
               <Input type='text' {...register('username')} />
             </ValidatedField>
             <ValidatedField
+              label='Email'
+              labelFor='email'
+              errorMessage={errors.email?.message ?? null}
+              required
+              vertical
+            >
+              <Input type='email' {...register('email')} />
+            </ValidatedField>
+            <ValidatedField
               label='Password'
               labelFor='password'
               errorMessage={errors.username?.message ?? null}
@@ -56,12 +65,12 @@ export function LoginForm({
           </SC.FormFields>
           <Row $justify='center'>
             <button type='submit' onClick={handleSubmit(submitHandler)}>
-              Login
+              Sign up 
             </button>
           </Row>
-          <span>Here for the first time?</span>
-          <button type='button' onClick={switchToSignUpHandler}>
-            Sign up
+          <span>Already have an account?</span>
+          <button type='button' onClick={switchToLoginHandler}>
+            Login
           </button>
         </SC.FormContent>
       </form>

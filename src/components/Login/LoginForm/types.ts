@@ -4,5 +4,6 @@ export interface ILoginForm {
 }
 
 export interface ILoginFormProps {
-  handleClose: () => void 
+  closeHandler: () => void 
+  switchToSignUpHandler: () => void
 }

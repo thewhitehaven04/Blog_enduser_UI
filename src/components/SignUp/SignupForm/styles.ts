@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Column } from 'Components/Common/Styles/Column/styles'
 import styled from 'styled-components'
 
@@ -20,8 +19,4 @@ export const FormFields = styled(Column)`
   display: flex;
   flex-direction: column;
   gap: 16px;
-`
-
-export const CloseIcon = styled(FontAwesomeIcon)`
-  height: 16px;
 `
