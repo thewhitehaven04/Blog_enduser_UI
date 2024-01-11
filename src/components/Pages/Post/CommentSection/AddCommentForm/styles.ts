@@ -3,5 +3,9 @@ import styled from 'styled-components'
 
 export const SubsectionWrapper = styled(Column)`
   padding-block: 16px;
-  gap: 4px;
+  gap: 8px;
+`
+
+export const ErrorText = styled.span`
+  color: #ff0033;
 `

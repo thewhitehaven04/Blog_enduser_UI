@@ -11,6 +11,7 @@ export const GlobalStyles = createGlobalStyle`
     // color defintions
     --deemphasized-text: #666;
     --gray: #6667;
+    --link-blue: #034694; 
     
     font-size: 12pt;
     font-family: var(--font-sans-serif), sans-serif;
@@ -25,6 +26,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    margin: 0
+    margin: 0;
+    padding-inline: 8px;
   }
 `

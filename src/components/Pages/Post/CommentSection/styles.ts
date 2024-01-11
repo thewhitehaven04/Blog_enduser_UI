@@ -8,3 +8,8 @@ export const CommentListWrapper = styled(Column)`
 export const SectionHeader = styled.h2`
   margin: 0;
 `
+
+export const Wrapper = styled.div`
+  padding-top: 4px;
+  padding-bottom: 16px;
+`

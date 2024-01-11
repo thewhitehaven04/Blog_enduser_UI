@@ -14,7 +14,7 @@ class CommentClient extends BaseApiClient {
   }
 
   async postComment(postId: string, body: IPostCommentBody): Promise<Response> {
-    return await this.authorizedRequest('POST', `posts/${postId}`, body)
+    return await this.authorizedRequest('POST', `posts/${postId}/comment`, {}, body)
   }
 }
 
