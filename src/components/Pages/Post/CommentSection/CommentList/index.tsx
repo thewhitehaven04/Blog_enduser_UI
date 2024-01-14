@@ -1,12 +1,14 @@
-import { type ITransformedCommentDataDto } from 'Client/postComments/types/responses'
+import {
+  type ITransformedCommentDto,
+} from 'Client/postComments/types/responses'
 import { Comment } from 'Pages/Post/CommentSection/Comment'
 import { type ICommentListProps } from 'Pages/Post/CommentSection/CommentList/types'
-import { withLoadingOnPageFetch } from 'Components/HOC/WithLoadingOnRepeatedFetch'
+import { withLoadingOnPageFetch } from 'Components/HOC/WithLoadingOnInfiniteFetch'
 
-function CommentList({ value }: ICommentListProps): JSX.Element {
+function CommentList({ page }: ICommentListProps): JSX.Element {
   return (
     <>
-      {value.comments.map((commentData, index) => (
+      {page.map((commentData, index) => (
         <Comment
           key={index}
           {...commentData}
@@ -17,7 +19,6 @@ function CommentList({ value }: ICommentListProps): JSX.Element {
   )
 }
 
-export const LoadedCommentList =
-  withLoadingOnPageFetch<ITransformedCommentDataDto>((props) => (
-    <CommentList value={props.pageEntry} />
-  ))
+export const LoadedCommentList = withLoadingOnPageFetch<ITransformedCommentDto>(
+  (props) => <CommentList page={props} />
+)

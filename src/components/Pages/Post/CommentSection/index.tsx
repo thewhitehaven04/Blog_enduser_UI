@@ -16,8 +16,7 @@ export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
 
   const handleClick = async (): Promise<void> => await fetchNextPage()
 
-  const commentCount =
-    status === 'success' && data.pages[0].success ? data.pages[0].data.count : 0
+  const commentCount = status === 'success' && data.count
 
   return (
     <SC.Wrapper>

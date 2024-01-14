@@ -1,21 +1,19 @@
-import {
-  useInfiniteQuery,
-  type UseInfiniteQueryResult,
-  type InfiniteData
-} from '@tanstack/react-query'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { type IDataResponse } from 'Client/base/types/responses'
 import { CommentClientInstance } from 'Client/postComments'
-import { type ITransformedCommentDataDto } from 'Client/postComments/types/responses'
+import { type ITransformedCommentArrayDto } from 'Client/postComments/types/responses'
 import { type IPaginationParams } from 'Hooks/pagination/types'
+import {
+  type IInfiniteCommentData,
+  type TUseCommentsResult
+} from 'Hooks/queries/comments/types'
 
 export function useComments(
   postId: string,
   params: IPaginationParams
-): UseInfiniteQueryResult<
-  InfiniteData<IDataResponse<ITransformedCommentDataDto>, unknown>,
-  Error
-> {
+): TUseCommentsResult {
   const pageSize = 10
+  const pageParams: IPaginationParams = { offset: 0, count: pageSize }
 
   return useInfiniteQuery({
     queryFn: async (params) =>
@@ -25,11 +23,18 @@ export function useComments(
       ).then(
         async (res) =>
           await (res.json() as Promise<
-            IDataResponse<ITransformedCommentDataDto>
+            IDataResponse<ITransformedCommentArrayDto>
           >)
       ),
+    select: (data) => {
+      const commentData: IInfiniteCommentData = {
+        pages: data.pages.map((data) => data.data.comments),
+        count: data.pages[data.pages.length - 1].data.count
+      }
+      return commentData
+    },
     queryKey: ['comments', postId],
-    initialPageParam: { offset: 0, count: pageSize },
+    initialPageParam: pageParams,
     getNextPageParam: (lastPage) => {
       const { data } = lastPage
       if (data.count > data.offset + pageSize) {

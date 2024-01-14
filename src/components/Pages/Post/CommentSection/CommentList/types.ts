@@ -1,5 +1,5 @@
-import { type ITransformedCommentDataDto } from 'Client/postComments/types/responses'
+import { type ITransformedCommentDto } from 'Client/postComments/types/responses'
 
 export interface ICommentListProps {
-  value: ITransformedCommentDataDto
+  page: ITransformedCommentDto[] 
 }

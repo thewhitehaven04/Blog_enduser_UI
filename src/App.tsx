@@ -7,6 +7,7 @@ import '@fontsource/lato'
 import '@fontsource-variable/roboto-serif'
 import { UserContextProvider } from 'Components/ContextProviders/UserContext'
 import { queryClient } from 'Client/query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 export function App(): JSX.Element {
   return (
@@ -16,6 +17,7 @@ export function App(): JSX.Element {
         <UserContextProvider>
           <AppRouter />
         </UserContextProvider>
+        <ReactQueryDevtools initialIsOpen={false}/>
       </QueryClientProvider>
     </>
   )
