@@ -1,14 +1,17 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { CommentClientInstance } from 'Client/postComments'
 import { type IPostCommentBody } from 'Client/postComments/types/requests'
-import { type TPostCommentResponseDto } from 'Client/postComments/types/responses'
-import { type TUseSubmitCommentResult } from 'Hooks/mutations/submitComment/types'
 import {
-  type IInfiniteCommentData
-} from 'Hooks/queries/comments/types'
+  type TGetPostCommentsResponseDto,
+  type TPostCommentResponseDto
+} from 'Client/postComments/types/responses'
+import { type TUseSubmitCommentResult } from 'Hooks/mutations/submitComment/types'
+import { usePagination } from 'Hooks/pagination'
+import { produce } from 'immer'
 
 export function useSubmitComment(postId: string): TUseSubmitCommentResult {
   const queryClient = useQueryClient()
+  const [pagination] = usePagination()
 
   return useMutation<TPostCommentResponseDto, Error, IPostCommentBody>({
     mutationFn: async (comment) =>
@@ -16,19 +19,32 @@ export function useSubmitComment(postId: string): TUseSubmitCommentResult {
         async (res) => (await res.json()) as TPostCommentResponseDto
       ),
     mutationKey: ['submitComment', postId],
-    onSuccess: (commentData) => {
-      queryClient.setQueryData<IInfiniteCommentData>(
-        ['comments', postId],
-        (oldCommentsData) => {
-          if (commentData.success) {
-            return oldCommentsData != null
-              ? {
-                  count: oldCommentsData?.count + 1,
-                  pages: [[commentData.data], ...oldCommentsData.pages]
+    onSuccess: (commentResponse) => {
+      queryClient.setQueryData<TGetPostCommentsResponseDto>(
+        ['comments', postId, pagination],
+        (data) => {
+          if (commentResponse.success) {
+            if (data != null) {
+              return produce(data, (draft) => {
+                if (draft?.success && commentResponse.success) {
+                  draft.pagination.totalCount += 1
+                  draft.data.unshift(commentResponse.data)
                 }
-              : { count: 1, pages: [[commentData.data]] }
+              })
+            }
+
+            return {
+              ...commentResponse,
+              data: [commentResponse.data],
+              pagination: {
+                totalCount: 1,
+                count: 10,
+                offset: 0
+              }
+            }
           }
-          return oldCommentsData
+
+          throw new Error('Invalid data')
         }
       )
     }

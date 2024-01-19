@@ -1,24 +1,27 @@
 import {
-  type ITransformedCommentDto,
+  type ITransformedCommentDto
 } from 'Client/postComments/types/responses'
+import { withLoadingOnFetch } from 'Components/HOC/WithLoadingOnFetch'
 import { Comment } from 'Pages/Post/CommentSection/Comment'
-import { type ICommentListProps } from 'Pages/Post/CommentSection/CommentList/types'
-import { withLoadingOnPageFetch } from 'Components/HOC/WithLoadingOnInfiniteFetch'
 
-function CommentList({ page }: ICommentListProps): JSX.Element {
+function CommentList({
+  data
+}: {
+  data: ITransformedCommentDto[]
+}): JSX.Element {
   return (
     <>
-      {page.map((commentData, index) => (
+      {data.map((comment) => (
         <Comment
-          key={index}
-          {...commentData}
-          author={commentData.author.username}
+          key={comment._id}
+          {...comment}
+          author={comment.author.username}
         />
       ))}
     </>
   )
 }
 
-export const LoadedCommentList = withLoadingOnPageFetch<ITransformedCommentDto>(
-  (props) => <CommentList page={props} />
+export const LoadedCommentList = withLoadingOnFetch<ITransformedCommentDto[]>(
+  (props) => <CommentList data={props.value} />
 )

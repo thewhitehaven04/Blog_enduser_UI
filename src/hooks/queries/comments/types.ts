@@ -1,12 +1,16 @@
-import { type UseInfiniteQueryResult } from '@tanstack/react-query'
-import { type ITransformedCommentDto } from 'Client/postComments/types/responses'
+import {
+  type UseQueryResult,
+  type InfiniteData,
+  type UseInfiniteQueryResult
+} from '@tanstack/react-query'
+import { type TGetPostCommentsResponseDto } from 'Client/postComments/types/responses'
 
-export interface IInfiniteCommentData {
-  count: number
-  pages: ITransformedCommentDto[][]
-}
+export type TUseAccumulatedQueryResult<T, K = unknown> = UseInfiniteQueryResult<
+  InfiniteData<T, K>,
+  Error
+> & { accumulatedPage?: T }
 
-export type TUseCommentsResult = UseInfiniteQueryResult<
-  IInfiniteCommentData,
+export type TUseCommentsResult = UseQueryResult<
+  TGetPostCommentsResponseDto,
   Error
 >

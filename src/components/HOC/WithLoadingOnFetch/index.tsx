@@ -1,5 +1,5 @@
 import { type UseQueryResult } from '@tanstack/react-query'
-import { type IDataResponse } from 'Client/base/types/responses'
+import { type TGenericResponse } from 'Client/base/types/responses'
 import { QueryError } from 'Components/Common/QueryError'
 import { type FC } from 'react'
 
@@ -8,7 +8,7 @@ export function withLoadingOnFetch<T>(component: FC<{ value: T }>) {
     status,
     data,
     error
-  }: UseQueryResult<IDataResponse<T>, Error>) {
+  }: UseQueryResult<TGenericResponse<T>, Error>) {
     if (status === 'success' && data?.success) {
       return component({ value: data.data })
     } else if (status === 'pending') {

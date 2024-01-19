@@ -9,14 +9,26 @@ import { LinkLikeButton } from 'Components/Common/LinkLikeButton/styles'
 import { Column } from 'Components/Common/Styles/Column/styles'
 
 export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
-  const paginationParams = usePagination()
+  /** default pagination */
+  const [paginationParams, setPaginationParams] = usePagination()
+  const defaultPageSize = paginationParams.count
 
   const query = useComments(postId ?? '', paginationParams)
-  const { isFetchingNextPage, hasNextPage, fetchNextPage, status, data } = query
+  const { data, status, isRefetching } = query
 
-  const handleClick = async (): Promise<void> => await fetchNextPage()
+  const commentCount =
+    status === 'success' && data?.success && data?.pagination.totalCount
+  const hasNextButton =
+    commentCount !== false && paginationParams.count < commentCount
 
-  const commentCount = status === 'success' && data.count
+  const handleLoadMoreClick = (): void => {
+    setPaginationParams((oldPagination) => {
+      return {
+        ...oldPagination,
+        count: paginationParams.count + defaultPageSize
+      }
+    })
+  }
 
   return (
     <SC.Wrapper>
@@ -25,12 +37,12 @@ export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
       <SC.CommentListWrapper>
         <LoadedCommentList {...query} />
       </SC.CommentListWrapper>
-      {hasNextPage && (
+      {hasNextButton && (
         <Column $alignment='start'>
-          {isFetchingNextPage ? (
+          {isRefetching ? (
             <InlineLoading loadingText='Loading more comments' />
           ) : (
-            <LinkLikeButton type='button' onClick={handleClick}>
+            <LinkLikeButton type='button' onClick={handleLoadMoreClick}>
               Load more comments
             </LinkLikeButton>
           )}

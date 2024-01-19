@@ -1,11 +1,14 @@
-import { type IPaginationParams } from 'Hooks/pagination/types'
+import {
+  type TUsePagination,
+  type IPaginationParams
+} from 'Hooks/pagination/types'
 import { PaginationSchema } from 'Hooks/pagination/validation'
 import { useSearchParams } from 'react-router-dom'
 
-export function usePagination(): IPaginationParams {
-  const [searchParams] = useSearchParams()
+export function usePagination(): TUsePagination {
+  const [searchParams, setSearchParams] = useSearchParams()
 
-  return PaginationSchema.validateSync(
-    Object.fromEntries(searchParams.entries())
-  )
+  const validatedSearchParams: IPaginationParams =
+    PaginationSchema.validateSync(Object.fromEntries(searchParams.entries()))
+  return [validatedSearchParams, setSearchParams]
 }

@@ -1,6 +1,10 @@
-import { type TGenericResponse } from 'Client/base/types/responses'
+import {
+  type TGenericResponse,
+  type TPaginatedResponse
+} from 'Client/base/types/responses'
 
 export interface ITransformedCommentDto {
+  _id: string,
   text: string
   author: {
     email: string
@@ -8,11 +12,8 @@ export interface ITransformedCommentDto {
   }
   created: string
 }
-export interface ITransformedCommentArrayDto {
-  comments: ITransformedCommentDto[]
-  count: number
-  offset: number
-}
-
 
 export type TPostCommentResponseDto = TGenericResponse<ITransformedCommentDto>
+
+export type TGetPostCommentsResponseDto =
+  TPaginatedResponse<ITransformedCommentDto>
