@@ -9,5 +9,7 @@ export const PostPublished = styled.span`
 `
 
 export const PostText = styled.p`
+  font-size: 12pt;
   font-family: var(--font-serif);
+  text-align: justify;
 `

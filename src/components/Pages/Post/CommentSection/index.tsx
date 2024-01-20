@@ -32,7 +32,8 @@ export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
 
   return (
     <SC.Wrapper>
-      <SC.SectionHeader>{commentCount} comments</SC.SectionHeader>
+      <SC.SectionHeader>Join the discussion:</SC.SectionHeader>
+      <span>{commentCount} comments</span>
       <AddCommentSubsection />
       <SC.CommentListWrapper>
         <LoadedCommentList {...query} />

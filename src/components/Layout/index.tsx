@@ -4,9 +4,10 @@ import { Row } from 'Components/Common/Styles/Row/styles'
 import { useUserContext } from 'Hooks/context/user'
 import { useState } from 'react'
 import { LoginForm } from 'Components/Login/LoginForm'
-import { Column } from 'Components/Common/Styles/Column/styles'
 import { EModalShown } from 'Components/Layout/types'
 import { SignUpForm } from 'Components/SignUp/SignupForm'
+import { UserInformation } from 'Components/UserInformation'
+import { Button } from 'Components/Button/styles'
 
 export function AppLayout(): JSX.Element {
   const [showModalType, setShowModalType] = useState<EModalShown>(
@@ -41,20 +42,17 @@ export function AppLayout(): JSX.Element {
           switchToLoginHandler={handleShowLoginModal}
         />
       )}
-      <nav>
+      <SC.TopbarWrapper>
         <Row $justify='end'>
           {user != null ? (
-            <Column $alignment='end'>
-              <span>{user.email}</span>
-              <span>{user.username}</span>{' '}
-            </Column>
+            <UserInformation {...user} />
           ) : (
-            <button type='button' onClick={handleShowLoginModal}>
+            <Button type='button' onClick={handleShowLoginModal}>
               Login
-            </button>
+            </Button>
           )}
         </Row>
-      </nav>
+      </SC.TopbarWrapper>
       <SC.Main>
         <Outlet />
       </SC.Main>

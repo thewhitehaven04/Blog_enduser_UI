@@ -1,19 +1,21 @@
 import { createGlobalStyle } from 'styled-components'
-import '@fontsource/lato'
-import "@fontsource/ibm-plex-serif"
+import '@fontsource-variable/outfit'
+import '@fontsource-variable/lora'
+
 
 export const GlobalStyles = createGlobalStyle`
   :root {
     box-sizing: border-box;
 
     // font definitions
-    --font-serif: "IBM Plex Serif";
-    --font-sans-serif: "Lato";
+    --font-serif: "Lora Variable";
+    --font-sans-serif: "Outfit Variable";
 
     // color defintions
     --deemphasized-text: #666;
     --gray: #6669;
-    --gray-border: #8889;
+    --gray-border: #8884;
+    --gray-background: #ddd6;
     --link-blue: #034694; 
     
     font-size: 12pt;
@@ -30,6 +32,5 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     margin: 0;
-    padding-inline: 8px;
   }
 `

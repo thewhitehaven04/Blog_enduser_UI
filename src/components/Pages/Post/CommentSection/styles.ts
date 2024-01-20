@@ -5,7 +5,8 @@ export const CommentListWrapper = styled(Column)`
   gap: 16px;
 `
 
-export const SectionHeader = styled.h2`
+export const SectionHeader = styled.h1`
+  font-size: larger;
   margin: 0;
 `
 
