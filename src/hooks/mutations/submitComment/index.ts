@@ -32,19 +32,8 @@ export function useSubmitComment(postId: string): TUseSubmitCommentResult {
                 }
               })
             }
-
-            return {
-              ...commentResponse,
-              data: [commentResponse.data],
-              pagination: {
-                totalCount: 1,
-                count: 10,
-                offset: 0
-              }
-            }
           }
-
-          throw new Error('Invalid data')
+          throw new Error('No prior comment data')
         }
       )
     }

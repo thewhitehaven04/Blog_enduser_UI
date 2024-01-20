@@ -1,5 +1,5 @@
 import * as SC from './styles'
-import { Controller, type SubmitHandler, useForm, Form } from 'react-hook-form'
+import { Controller, type SubmitHandler, useForm } from 'react-hook-form'
 import { type IAddCommentForm } from 'Pages/Post/CommentSection/AddCommentForm/types'
 import rehypeSanitize from 'rehype-sanitize'
 import MDEditor from '@uiw/react-md-editor'
@@ -10,6 +10,7 @@ import { Row } from 'Components/Common/Styles/Row/styles'
 import { AddCommentSchema } from 'Pages/Post/CommentSection/AddCommentForm/validation'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
+import { RippleButton } from 'Components/Button'
 
 export function AddCommentSubsection(): JSX.Element {
   const {
@@ -44,12 +45,12 @@ export function AddCommentSubsection(): JSX.Element {
               name='text'
               control={control}
               rules={{ required: true }}
-              render={({ field }) => (
+              render={({ field: { ref, ...rest } }) => (
                 <MDEditor
                   previewOptions={{
                     rehypePlugins: [[rehypeSanitize]]
                   }}
-                  {...field}
+                  {...rest}
                 />
               )}
             />
@@ -57,7 +58,7 @@ export function AddCommentSubsection(): JSX.Element {
               <SC.ErrorText>{errors.text.message}</SC.ErrorText>
             )}
             <Row>
-              <button type='submit'>Submit</button>
+              <RippleButton type='submit'>Submit</RippleButton>
             </Row>
           </SC.SubsectionWrapper>
         </form>

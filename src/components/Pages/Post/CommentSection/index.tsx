@@ -11,9 +11,9 @@ import { Column } from 'Components/Common/Styles/Column/styles'
 export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
   /** default pagination */
   const [paginationParams, setPaginationParams] = usePagination()
-  const defaultPageSize = paginationParams.count
+  const defaultIncrement = 10
 
-  const query = useComments(postId ?? '', paginationParams)
+  const query = useComments(postId ?? '', paginationParams, defaultIncrement)
   const { data, status, isRefetching } = query
 
   const commentCount =
@@ -25,7 +25,7 @@ export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
     setPaginationParams((oldPagination) => {
       return {
         ...oldPagination,
-        count: paginationParams.count + defaultPageSize
+        count: paginationParams.count + defaultIncrement 
       }
     })
   }

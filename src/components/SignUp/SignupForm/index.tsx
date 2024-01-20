@@ -9,6 +9,7 @@ import { ValidatedField } from 'Components/Common/ValidatedField'
 import { Input } from 'Components/Common/Input/styles'
 import * as SC from './styles'
 import { useSignup } from 'Hooks/mutations/signup'
+import { Button } from 'Components/Button/styles'
 
 export function SignUpForm({
   closeHandler,
@@ -64,14 +65,14 @@ export function SignUpForm({
             </ValidatedField>
           </SC.FormFields>
           <Row $justify='center'>
-            <button type='submit' onClick={handleSubmit(submitHandler)}>
+            <Button type='submit' onClick={handleSubmit(submitHandler)}>
               Sign up 
-            </button>
+            </Button>
           </Row>
           <span>Already have an account?</span>
-          <button type='button' onClick={switchToLoginHandler}>
+          <Button type='button' onClick={switchToLoginHandler}>
             Login
-          </button>
+          </Button>
         </SC.FormContent>
       </form>
     </Modal>

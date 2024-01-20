@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@fontsource-variable/roboto-serif": "^5.0.9",
+    "@fontsource/ibm-plex-serif": "^5.0.8",
     "@fontsource/lato": "^5.0.18",
-    "@fontsource/merriweather": "^5.0.8",
     "@fortawesome/fontawesome-common-types": "^6.5.1",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
