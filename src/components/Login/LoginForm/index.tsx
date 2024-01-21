@@ -9,6 +9,7 @@ import { Input } from 'Components/Common/Input/styles'
 import { useLogin } from 'Hooks/mutations/login'
 import { Row } from 'Components/Common/Styles/Row/styles'
 import { Modal } from 'Components/Common/Modal'
+import { Button } from 'Components/Button/styles'
 
 export function LoginForm({
   closeHandler,
@@ -55,14 +56,14 @@ export function LoginForm({
             </ValidatedField>
           </SC.FormFields>
           <Row $justify='center'>
-            <button type='submit' onClick={handleSubmit(submitHandler)}>
+            <Button type='submit' onClick={handleSubmit(submitHandler)}>
               Login
-            </button>
+            </Button>
           </Row>
           <span>Here for the first time?</span>
-          <button type='button' onClick={switchToSignUpHandler}>
+          <Button type='button' onClick={switchToSignUpHandler}>
             Sign up
-          </button>
+          </Button>
         </SC.FormContent>
       </form>
     </Modal>

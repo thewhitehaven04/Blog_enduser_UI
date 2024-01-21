@@ -57,7 +57,7 @@ export function AddCommentSubsection(): JSX.Element {
           </SC.SubsectionWrapper>
         </form>
       ) : (
-        <span>Please, sign in to leave comments.</span>
+        <span>Please, sign in to leave comments</span>
       )}
     </>
   )

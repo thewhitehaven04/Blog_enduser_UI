@@ -8,6 +8,8 @@ import { EModalShown } from 'Components/Layout/types'
 import { SignUpForm } from 'Components/SignUp/SignupForm'
 import { UserInformation } from 'Components/UserInformation'
 import { Button } from 'Components/Button/styles'
+import { LinkLikeButton } from 'Components/Common/LinkLikeButton/styles'
+import { Link } from 'react-router-dom'
 
 export function AppLayout(): JSX.Element {
   const [showModalType, setShowModalType] = useState<EModalShown>(
@@ -42,14 +44,22 @@ export function AppLayout(): JSX.Element {
           switchToLoginHandler={handleShowLoginModal}
         />
       )}
-      <SC.TopbarWrapper>
+      <SC.TopbarWrapper $alignment='center' $justify='between'>
+        <Row $justify='start'>
+          <SC.HeaderLink to='/posts'>All posts</SC.HeaderLink>
+        </Row>
         <Row $justify='end'>
           {user != null ? (
             <UserInformation {...user} />
           ) : (
-            <Button type='button' onClick={handleShowLoginModal}>
-              Login
-            </Button>
+            <SC.ButtonWrapper>
+              <Button type='button' onClick={handleShowLoginModal}>
+                Login
+              </Button>
+              <Button type='button' onClick={handleShowSignUpModal}>
+                Sign up
+              </Button>
+            </SC.ButtonWrapper>
           )}
         </Row>
       </SC.TopbarWrapper>

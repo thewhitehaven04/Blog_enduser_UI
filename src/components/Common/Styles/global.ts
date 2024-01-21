@@ -16,6 +16,7 @@ export const GlobalStyles = createGlobalStyle`
     --gray: #6669;
     --gray-border: #8884;
     --gray-background: #ddd6;
+    --gray-shadow: #333C;
     --link-blue: #034694; 
     
     font-size: 12pt;

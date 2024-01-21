@@ -16,6 +16,5 @@ export const Wrapper = styled.div`
   gap: 8px;
 
   align-items: center;
-  
-  padding: 8px;
+  padding-right: 8px;
 `

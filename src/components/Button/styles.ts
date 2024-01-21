@@ -13,7 +13,7 @@ export const Button = styled.button`
   position: relative;
   overflow: hidden;
 
-  box-shadow: 0px 0px 4px 1px #ffffff;
+  box-shadow: 0px 1px 3px 0.4px var(--gray-shadow);
 
   border: 1px solid var(--gray-border);
 `
@@ -30,7 +30,7 @@ export const RippleElement = styled.span<{ x: number; y: number }>`
   background-color: rgba(0, 0, 0, 0.25);
 
   animation-name: ripple;
-  animation-duration: 0.2s;
+  animation-duration: 0.3s;
   animation-fill-mode: forwards;
 
   @keyframes ripple {
@@ -39,7 +39,7 @@ export const RippleElement = styled.span<{ x: number; y: number }>`
     }
 
     to {
-      transform: scale(100);
+      transform: scale(200);
     }
   }
 `

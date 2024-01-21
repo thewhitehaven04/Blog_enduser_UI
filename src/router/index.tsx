@@ -1,5 +1,6 @@
 import { AppLayout } from 'Components/Layout'
 import { PostPage } from 'Pages/Post'
+import { PostsPage } from 'Pages/Posts'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 export function AppRouter(): JSX.Element {
@@ -8,6 +9,7 @@ export function AppRouter(): JSX.Element {
       <Routes>
         <Route path='/' element={<AppLayout />}>
           <Route path='post/:postId/comments' element={<PostPage />} />
+          <Route path='posts' element={<PostsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
