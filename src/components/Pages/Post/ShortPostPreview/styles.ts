@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const Wrapper = styled.article`
-  max-height: 160px;
+  max-height: 200px;
   max-width: 100%;
   overflow-y: hidden;
 
@@ -21,12 +21,12 @@ export const PostText = styled.p`
   mask: linear-gradient(
     180deg,
     #000 50%,
-    #0000 80%
+    #0000 90%
   );
   -webkit-mask: linear-gradient(
     180deg,
     #000 50%,
-    #0000 80%
+    #0000 90%
   ); 
 `
 

@@ -27,7 +27,7 @@ export const PostList = styled.div`
   grid-area: posts;
 
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 32px;
 
   max-width: 900px;

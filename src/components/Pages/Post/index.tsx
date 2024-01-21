@@ -13,7 +13,7 @@ export function PostPage(): JSX.Element {
         <PostSection postId={postId ?? ''} />
         <CommentSection postId={postId ?? ''} />
       </SC.PageWrapper>
-      <MorePostsSection />
+      <MorePostsSection postId={postId ?? ''} />
     </>
   )
 }
