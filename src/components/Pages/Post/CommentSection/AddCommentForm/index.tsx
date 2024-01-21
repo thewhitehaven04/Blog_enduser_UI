@@ -1,8 +1,6 @@
 import * as SC from './styles'
 import { Controller, type SubmitHandler, useForm } from 'react-hook-form'
 import { type IAddCommentForm } from 'Pages/Post/CommentSection/AddCommentForm/types'
-import rehypeSanitize from 'rehype-sanitize'
-import MDEditor from '@uiw/react-md-editor'
 import { useSubmitComment } from 'Hooks/mutations/submitComment'
 import { useParams } from 'react-router-dom'
 import { useUserContext } from 'Hooks/context/user'
@@ -11,6 +9,7 @@ import { AddCommentSchema } from 'Pages/Post/CommentSection/AddCommentForm/valid
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
 import { RippleButton } from 'Components/Button'
+import { CommentEditor } from 'Pages/Post/CommentSection/CommentEditor'
 
 export function AddCommentSubsection(): JSX.Element {
   const {
@@ -46,12 +45,7 @@ export function AddCommentSubsection(): JSX.Element {
               control={control}
               rules={{ required: true }}
               render={({ field: { ref, ...rest } }) => (
-                <MDEditor
-                  previewOptions={{
-                    rehypePlugins: [[rehypeSanitize]]
-                  }}
-                  {...rest}
-                />
+                <CommentEditor {...rest} height={250} />
               )}
             />
             {errors.text != null && (

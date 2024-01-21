@@ -30,6 +30,10 @@ export const GlobalStyles = createGlobalStyle`
     font-family: inherit;
   }
 
+  p {
+    margin-top: 0px;
+  }
+
   body {
     margin: 0;
   }

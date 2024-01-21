@@ -1,3 +1,4 @@
+import Markdown from 'react-markdown'
 import styled from 'styled-components'
 
 export const AuthorName = styled.span`
@@ -18,9 +19,7 @@ export const CommentDate = styled.span`
   }
 `
 
-export const CommentText = styled.p`
-  padding-left: 0;
-  margin: 0;
+export const CommentText = styled(Markdown)`
 `
 
 export const CommentWrapper = styled.div`
@@ -32,4 +31,14 @@ export const CommentWrapper = styled.div`
   gap: 8px;
 
   margin-bottom: 8px;
+  
+  & blockquote {
+    border-left: 3px solid var(--gray); 
+    margin: 0;
+    padding: 0px 0px 0px 8px;
+  }
+
+  & p {
+    margin: 0;
+  }
 `
