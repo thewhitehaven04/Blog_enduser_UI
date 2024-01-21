@@ -1,30 +1,38 @@
 import styled from 'styled-components'
 
 export const SectionWrapper = styled.section`
-  display: flex;
-  flex-flow: column;
-  align-items: center;
+  display: grid;
+  grid-template-areas:
+    'readMore .'
+    'posts posts';
+  justify-content: center;
 
-  background-color: var(--gray-background); 
-  padding: 16px;
-
+  background-color: var(--gray-background);
   width: 100%;
+  padding-top: 16px;
+`
+
+export const SectionLayout = styled.div``
+
+export const SectionHeader = styled.div`
+  font-size: larger; 
+  font-weight: bold;
+  margin-bottom: 16px;
+
+  grid-area: readMore;
+  align-self: start;
 `
 
 export const PostList = styled.div`
+  grid-area: posts;
+
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(1fr, 200px));
-  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
 
   max-width: 900px;
 
   @media screen and (max-width: 768px) {
     width: 100%;
   }
-`
-
-export const SectionHeader = styled.div`
-  font-size: 12pt;
-  font-weight: bold;
-  margin-bottom: 16px;
 `

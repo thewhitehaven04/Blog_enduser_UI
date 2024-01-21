@@ -1,21 +1,33 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-export const Wrapper = styled.div`
-  width: calc(50% - 16px);
-  max-height: 120px;
+export const Wrapper = styled.article`
+  max-height: 160px;
+  max-width: 100%;
   overflow-y: hidden;
 
   display: flex;
-  flex-flow: column nowrap; 
+  flex-flow: column nowrap;
   gap: 8px;
 `
 
 export const PostText = styled.p`
   margin: 0%;
-  font-size: 12pt;
+  font-size: 11pt;
   font-family: var(--font-serif);
   text-align: justify;
+
+  overflow-y: hidden;
+  mask: linear-gradient(
+    180deg,
+    #000 50%,
+    #0000 80%
+  );
+  -webkit-mask: linear-gradient(
+    180deg,
+    #000 50%,
+    #0000 80%
+  ); 
 `
 
 export const TitleWithLink = styled(Link)`

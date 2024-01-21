@@ -25,7 +25,7 @@ export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
     setPaginationParams((oldPagination) => {
       return {
         ...oldPagination,
-        count: paginationParams.count + defaultIncrement 
+        count: paginationParams.count + defaultIncrement
       }
     })
   }
@@ -33,8 +33,12 @@ export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
   return (
     <SC.Wrapper>
       <SC.SectionHeader>Join the discussion:</SC.SectionHeader>
-      <span>{commentCount} comments</span>
       <AddCommentSubsection />
+      <span>
+        {typeof commentCount === 'number' && commentCount > 0
+          ? `${commentCount} comments`
+          : 'No one has left a comment so far. Become first!'}
+      </span>
       <SC.CommentListWrapper>
         <LoadedCommentList {...query} />
       </SC.CommentListWrapper>
