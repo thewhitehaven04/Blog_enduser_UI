@@ -7,6 +7,7 @@ import * as SC from './styles'
 import { AddCommentSubsection } from 'Pages/Post/CommentSection/AddCommentForm'
 import { LinkLikeButton } from 'Components/Common/LinkLikeButton/styles'
 import { Column } from 'Components/Common/Styles/Column/styles'
+import { getCommentCountString } from 'Pages/Post/CommentSection/utils'
 
 export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
   /** default pagination */
@@ -33,12 +34,11 @@ export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
   return (
     <SC.Wrapper>
       <SC.SectionHeader>Join the discussion:</SC.SectionHeader>
-      <AddCommentSubsection />
       <span>
-        {typeof commentCount === 'number' && commentCount > 0
-          ? `${commentCount} comments`
-          : 'No one has left a comment so far. Become first!'}
+        {typeof commentCount === 'number' &&
+          getCommentCountString(commentCount)}
       </span>
+      <AddCommentSubsection />
       <SC.CommentListWrapper>
         <LoadedCommentList {...query} />
       </SC.CommentListWrapper>

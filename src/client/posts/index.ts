@@ -10,6 +10,10 @@ export class PostsClient extends BaseApiClient {
   async getPost(postId: string): Promise<Response> {
     return await this.request('GET', `posts/${postId}`)
   }
+
+  async getReadMore(excludingPost: string): Promise<Response> {
+    return await this.request('GET', `posts/readMore`, { excludingPost })
+  }
 }
 
 const PostsClientInstance = new PostsClient(appConfig.apiRootUrl)

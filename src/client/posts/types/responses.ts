@@ -14,3 +14,5 @@ export interface IFormattedPostDto {
 }
 
 export type TGetPostsResponse = TPaginatedResponse<IFormattedPostDto>
+
+export type TGetReadMoreResponse = TPaginatedResponse<IFormattedPostDto>

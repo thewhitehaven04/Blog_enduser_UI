@@ -7,7 +7,7 @@ import { toRelativeDate } from 'Pages/Post/CommentSection/Comment/helpers'
 
 function PostView({ title, author, text, published }: IPostProps): JSX.Element {
   return (
-    <Column $alignment='center'>
+    <Column $alignment='start'>
       <SC.PostTitle>{title}</SC.PostTitle>
       <SC.PostPublished>
         By {author.username}, {toRelativeDate(published)}
