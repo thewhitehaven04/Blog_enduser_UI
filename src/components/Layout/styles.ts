@@ -4,12 +4,12 @@ import styled from 'styled-components';
 
 export const Main = styled.main`
   margin: 0 auto;
- 
+  flex-grow: 1;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
 
-  max-width: 100%;
+  width: 100%;
 `
 
 export const TopbarWrapper = styled(Row)`

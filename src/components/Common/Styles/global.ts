@@ -23,6 +23,13 @@ export const GlobalStyles = createGlobalStyle`
     font-family: var(--font-sans-serif), sans-serif;
   }
 
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+  }
+
   *, *::before, *::after {
     box-sizing: inherit;
   }

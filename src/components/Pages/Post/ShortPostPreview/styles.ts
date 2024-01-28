@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-export const Wrapper = styled.article`
+export const LinkWrapper = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`
+
+export const ShortPostWrapper = styled.article`
   max-height: 200px;
   max-width: 100%;
   overflow-y: hidden;
@@ -18,9 +23,7 @@ export const PostSummary = styled.span`
   text-align: justify;
 `
 
-export const TitleWithLink = styled(Link)`
+export const PostTitle = styled.div`
   font-weight: bold;
-  text-decoration: none;
-  color: inherit;
   font-family: var(--font-serif);
 `

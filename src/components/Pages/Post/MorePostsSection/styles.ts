@@ -9,7 +9,8 @@ export const SectionWrapper = styled.section`
 
   background-color: var(--gray-background);
   width: 100%;
-  padding-top: 16px;
+  height: 100%;
+  padding-block: 16px;
 `
 
 export const SectionLayout = styled.div``

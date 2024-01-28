@@ -8,12 +8,12 @@ export function PostPage(): JSX.Element {
   const { postId } = useParams<'postId'>()
 
   return (
-    <>
-      <SC.PageWrapper>
+    <SC.PostPageWrapper>
+      <SC.PostPageColumnWrapper>
         <PostSection postId={postId ?? ''} />
         <CommentSection postId={postId ?? ''} />
-      </SC.PageWrapper>
+      </SC.PostPageColumnWrapper>
       <MorePostsSection postId={postId ?? ''} />
-    </>
+    </SC.PostPageWrapper>
   )
 }

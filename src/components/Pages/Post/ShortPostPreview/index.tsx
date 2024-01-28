@@ -7,11 +7,11 @@ export function ShortPostPreview({
   summary
 }: IShortPostProps): JSX.Element {
   return (
-    <SC.Wrapper>
-      <SC.TitleWithLink to={`/post/${postId}/comments`}>
-        {title}
-      </SC.TitleWithLink>
-      <SC.PostSummary>{summary}</SC.PostSummary>
-    </SC.Wrapper>
+    <SC.LinkWrapper to={`/post/${postId}/comments`}>
+      <SC.ShortPostWrapper>
+        <SC.PostTitle>{title}</SC.PostTitle>
+        <SC.PostSummary>{summary}</SC.PostSummary>
+      </SC.ShortPostWrapper>
+    </SC.LinkWrapper>
   )
 }
