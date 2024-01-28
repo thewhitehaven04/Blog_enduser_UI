@@ -1,5 +1,5 @@
 export interface IShortPostProps {
-  text: string
   title: string
+  summary: string
   postId: string
 }

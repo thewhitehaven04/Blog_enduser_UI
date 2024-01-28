@@ -1,27 +1,30 @@
 import { withLoadingOnInitialFetch } from 'Components/HOC/WithLoadingOnFetch'
 import { type IPostProps } from 'Pages/Post/PostSection/Post/types'
 import * as SC from './styles'
-import { Column } from 'Components/Common/Styles/Column/styles'
 import { type IFormattedPostDto } from 'Client/posts/types/responses'
 import { toRelativeDate } from 'Pages/Post/CommentSection/Comment/helpers'
 
-function PostView({ title, author, text, published }: IPostProps): JSX.Element {
+function PostView({ title, author, text, published, summary }: IPostProps): JSX.Element {
   return (
-    <Column $alignment='start'>
+    <SC.PostViewWrapper $alignment='center'>
       <SC.PostTitle>{title}</SC.PostTitle>
       <SC.PostPublished>
         By {author.username}, {toRelativeDate(published)}
       </SC.PostPublished>
-        <SC.PostText dangerouslySetInnerHTML={{ __html: text }} />
-    </Column>
+      <SC.PostSummary>{summary}</SC.PostSummary>
+      <SC.PostText dangerouslySetInnerHTML={{ __html: text }} />
+    </SC.PostViewWrapper>
   )
 }
 
-export const LoadedPost = withLoadingOnInitialFetch<IFormattedPostDto>((props) => (
-  <PostView
-    text={props.value.text}
-    title={props.value.title}
-    author={props.value.author}
-    published={props.value.published}
-  />
-))
+export const LoadedPost = withLoadingOnInitialFetch<IFormattedPostDto>(
+  ({ value }) => (
+    <PostView
+      text={value.text}
+      summary={value.summary}
+      title={value.title}
+      author={value.author}
+      published={value.published}
+    />
+  )
+)

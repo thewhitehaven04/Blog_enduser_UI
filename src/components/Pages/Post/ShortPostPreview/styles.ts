@@ -11,23 +11,11 @@ export const Wrapper = styled.article`
   gap: 8px;
 `
 
-export const PostText = styled.p`
+export const PostSummary = styled.span`
   margin: 0%;
   font-size: 11pt;
   font-family: var(--font-serif);
   text-align: justify;
-
-  overflow-y: hidden;
-  mask: linear-gradient(
-    180deg,
-    #000 50%,
-    #0000 90%
-  );
-  -webkit-mask: linear-gradient(
-    180deg,
-    #000 50%,
-    #0000 90%
-  ); 
 `
 
 export const TitleWithLink = styled(Link)`

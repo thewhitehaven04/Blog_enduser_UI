@@ -11,6 +11,7 @@ export interface IFormattedPostDto {
   updated: string | null
   published: string
   isPublished: boolean
+  summary: string
 }
 
 export type TGetPostsResponse = TPaginatedResponse<IFormattedPostDto>

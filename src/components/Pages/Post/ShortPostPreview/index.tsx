@@ -4,14 +4,14 @@ import { type IShortPostProps } from 'Pages/Post/ShortPostPreview/types'
 export function ShortPostPreview({
   postId,
   title,
-  text
+  summary
 }: IShortPostProps): JSX.Element {
   return (
     <SC.Wrapper>
       <SC.TitleWithLink to={`/post/${postId}/comments`}>
         {title}
       </SC.TitleWithLink>
-      <SC.PostText dangerouslySetInnerHTML={{ __html: text }} />
+      <SC.PostSummary>{summary}</SC.PostSummary>
     </SC.Wrapper>
   )
 }
