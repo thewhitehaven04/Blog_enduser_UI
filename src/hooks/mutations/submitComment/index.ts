@@ -7,6 +7,7 @@ import {
 } from 'Client/postComments/types/responses'
 import { type TUseSubmitCommentResult } from 'Hooks/mutations/submitComment/types'
 import { usePagination } from 'Hooks/pagination'
+import { CommentsQueryKey } from 'Hooks/queries/comments'
 import { produce } from 'immer'
 
 export function useSubmitComment(): TUseSubmitCommentResult {
@@ -21,7 +22,7 @@ export function useSubmitComment(): TUseSubmitCommentResult {
     mutationKey: ['submitComment'],
     onSuccess: (commentResponse, { postId }) => {
       queryClient.setQueryData<TGetPostCommentsResponseDto>(
-        ['comments', postId, pagination],
+        CommentsQueryKey({ postId, params: pagination }),
         (data) => {
           if (commentResponse.success) {
             if (data != null) {

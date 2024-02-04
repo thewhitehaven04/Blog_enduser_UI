@@ -15,7 +15,6 @@ import { UseCommentMutationContext } from 'Hooks/context/commentMutation'
 import { useUserContext } from 'Hooks/context/user'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { CommentEditFormSchema } from 'Pages/Post/CommentSection/Comment/validation'
-import { Column } from 'Components/Common/Styles/Column/styles'
 import { ErrorText } from 'Components/Common/Styles/Error'
 
 export function Comment({

@@ -15,7 +15,7 @@ export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
   const [paginationParams, setPaginationParams] = usePagination()
   const defaultIncrement = 10
 
-  const query = useComments(postId ?? '', paginationParams, defaultIncrement)
+  const query = useComments(postId, paginationParams, defaultIncrement)
   const { data, status, isRefetching } = query
 
   const commentCount =

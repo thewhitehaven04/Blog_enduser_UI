@@ -4,6 +4,14 @@ import { type TGetPostCommentsResponseDto } from 'Client/postComments/types/resp
 import { type IPaginationParams } from 'Hooks/pagination/types'
 import { type TUseCommentsResult } from 'Hooks/queries/comments/types'
 
+export const CommentsQueryKey = ({
+  postId,
+  params
+}: {
+  postId: string
+  params: IPaginationParams
+}): [string, string, IPaginationParams] => ['comments', postId, params]
+
 export function useComments(
   postId: string,
   params: IPaginationParams,
@@ -17,12 +25,13 @@ export function useComments(
         async (res) =>
           await (res.json() as Promise<TGetPostCommentsResponseDto>)
       ),
-    queryKey: ['comments', postId, params],
+    queryKey: CommentsQueryKey({ postId, params }),
     initialData: () =>
-      queryClient.getQueryData<TGetPostCommentsResponseDto>([
-        'comments',
-        postId,
-        { ...params, count: params.count - countIncrement }
-      ])
+      queryClient.getQueryData<TGetPostCommentsResponseDto>(
+        CommentsQueryKey({
+          postId,
+          params: { ...params, count: params.count - countIncrement }
+        })
+      )
   })
 }

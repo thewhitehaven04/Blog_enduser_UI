@@ -3,6 +3,12 @@ import { PostsClientInstance } from 'Client/posts'
 import { type IGetPostsRequestParamsDto } from 'Client/posts/types/requests'
 import { type TGetPostsResponse } from 'Client/posts/types/responses'
 
+export const PostsQueryKey = ({
+  pagination
+}: {
+  pagination: IGetPostsRequestParamsDto
+}): [string, IGetPostsRequestParamsDto] => ['posts', pagination]
+
 export function usePosts(
   pagination: IGetPostsRequestParamsDto
 ): UseQueryResult<TGetPostsResponse, Error> {
@@ -11,6 +17,6 @@ export function usePosts(
       await PostsClientInstance.getPosts(pagination).then(
         async (response) => (await response.json()) as TGetPostsResponse
       ),
-    queryKey: ['posts', pagination],
+    queryKey: PostsQueryKey({ pagination })
   })
 }

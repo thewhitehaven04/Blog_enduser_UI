@@ -1,12 +1,10 @@
-import {
-  useMutation,
-  useQueryClient
-} from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { type TGenericResponse } from 'Client/base/types/responses'
 import { CommentClientInstance } from 'Client/postComments'
 import { type TGetPostCommentsResponseDto } from 'Client/postComments/types/responses'
 import type { TUseDeleteCommentResult } from 'Hooks/mutations/deleteComment/types'
 import { usePagination } from 'Hooks/pagination'
+import { CommentsQueryKey } from 'Hooks/queries/comments'
 import { produce } from 'immer'
 
 export function useDeleteComment(postId: string): TUseDeleteCommentResult {
@@ -21,7 +19,7 @@ export function useDeleteComment(postId: string): TUseDeleteCommentResult {
     mutationKey: ['deleteComment'],
     onSuccess: ({ success }, { commentId }) => {
       queryClient.setQueryData<TGetPostCommentsResponseDto>(
-        ['comments', postId, pagination],
+        CommentsQueryKey({ postId, params: pagination }),
         (commentListData) => {
           if (success) {
             return produce(commentListData, (draft) => {

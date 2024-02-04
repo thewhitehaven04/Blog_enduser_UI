@@ -7,6 +7,7 @@ import type {
 } from 'Client/postComments/types/responses'
 import type { TUseUpdateCommentResult } from 'Hooks/mutations/updateComment/types'
 import { usePagination } from 'Hooks/pagination'
+import { CommentsQueryKey } from 'Hooks/queries/comments'
 import { produce } from 'immer'
 
 export function useUpdateComment(postId: string): TUseUpdateCommentResult {
@@ -26,7 +27,7 @@ export function useUpdateComment(postId: string): TUseUpdateCommentResult {
     mutationKey: ['updateComment'],
     onSuccess: (newCommentData, { commentId }) => {
       queryClient.setQueryData<TGetPostCommentsResponseDto>(
-        ['comments', postId, pagination],
+        CommentsQueryKey({ postId, params: pagination }),
         (oldCommentData) => {
           if (oldCommentData != null) {
             return produce(oldCommentData, (draft) => {
