@@ -11,12 +11,12 @@ import { useState } from 'react'
 import { Controller, useForm, type SubmitHandler } from 'react-hook-form'
 import { CommentEditor } from 'Pages/Post/CommentSection/CommentEditor'
 import { LinkLikeButton } from 'Components/Common/LinkLikeButton/styles'
-import { Button } from 'Components/Button/styles'
 import { UseCommentMutationContext } from 'Hooks/context/commentMutation'
 import { useUserContext } from 'Hooks/context/user'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { CommentEditFormSchema } from 'Pages/Post/CommentSection/Comment/validation'
-import { ValidatedField } from 'Components/Common/ValidatedField'
+import { Column } from 'Components/Common/Styles/Column/styles'
+import { ErrorText } from 'Components/Common/Styles/Error'
 
 export function Comment({
   author,
@@ -25,19 +25,14 @@ export function Comment({
   id: commentId
 }: ICommentProps): JSX.Element {
   const [isEditing, setIsEditing] = useState<boolean>(false)
-
-  const handleToggleEditState = (): void => {
-    setIsEditing(!isEditing)
-  }
-
   const user = useUserContext()
-
   const canShowControls = user?.username === author
 
   const {
     control,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    clearErrors
   } = useForm<ICommentEditForm>({
     defaultValues: {
       text
@@ -46,6 +41,10 @@ export function Comment({
   })
 
   const { updateComment, deleteComment } = UseCommentMutationContext()
+
+  const handleToggleEditState = (): void => {
+    setIsEditing(!isEditing)
+  }
 
   const deleteCommentHandler = (): void => {
     deleteComment({ commentId })
@@ -56,6 +55,7 @@ export function Comment({
   ) => {
     handleToggleEditState()
     updateComment({ commentId, body: editCommentData })
+    clearErrors()
   }
 
   return (
@@ -66,7 +66,7 @@ export function Comment({
           <SC.CommentDate>{toRelativeDate(created)}</SC.CommentDate>
         </Row>
         {isEditing ? (
-          <Row $alignment='start'>
+          <>
             <Controller
               control={control}
               name='text'
@@ -74,7 +74,8 @@ export function Comment({
                 <CommentEditor {...restField} height={100} />
               )}
             />
-          </Row>
+            <ErrorText>{errors.text?.message}</ErrorText>
+          </>
         ) : (
           <Markdown remarkPlugins={[remarkGfm]}>{text}</Markdown>
         )}

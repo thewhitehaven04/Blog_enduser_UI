@@ -10,6 +10,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
 import { RippleButton } from 'Components/Button'
 import { CommentEditor } from 'Pages/Post/CommentSection/CommentEditor'
+import { ErrorText } from 'Components/Common/Styles/Error'
 
 export function AddCommentSubsection(): JSX.Element {
   const {
@@ -49,7 +50,7 @@ export function AddCommentSubsection(): JSX.Element {
               )}
             />
             {errors.text != null && (
-              <SC.ErrorText>{errors.text.message}</SC.ErrorText>
+              <ErrorText>{errors.text.message}</ErrorText>
             )}
             <Row>
               <RippleButton type='submit'>Submit</RippleButton>
