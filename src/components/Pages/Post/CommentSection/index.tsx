@@ -8,6 +8,7 @@ import { AddCommentSubsection } from 'Pages/Post/CommentSection/AddCommentForm'
 import { LinkLikeButton } from 'Components/Common/LinkLikeButton/styles'
 import { Column } from 'Components/Common/Styles/Column/styles'
 import { getCommentCountString } from 'Pages/Post/CommentSection/utils'
+import { CommentMutationContextProvider } from 'Components/ContextProviders/CommentMutation'
 
 export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
   /** default pagination */
@@ -40,7 +41,9 @@ export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
       </span>
       <AddCommentSubsection />
       <SC.CommentListWrapper>
-        <LoadedCommentList {...query} />
+        <CommentMutationContextProvider postId={postId}>
+          <LoadedCommentList {...query} />
+        </CommentMutationContextProvider>
       </SC.CommentListWrapper>
       {hasNextButton && (
         <Column $alignment='start'>

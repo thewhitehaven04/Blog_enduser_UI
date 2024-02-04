@@ -1,8 +1,14 @@
 export interface ICommentRequestParams {
-  count: number
-  offset: number
+  postId: string
+  count: number 
+  offset: number 
 }
 
 export interface IPostCommentBody {
+  postId: string
+  text: string
+}
+
+export interface IPatchCommentBody {
   text: string
 }

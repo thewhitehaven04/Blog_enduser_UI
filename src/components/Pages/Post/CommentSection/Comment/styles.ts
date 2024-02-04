@@ -19,7 +19,11 @@ export const CommentDate = styled.span`
   }
 `
 
-export const CommentText = styled(Markdown)`
+export const CommentControlsWrapper = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 8px;
+  justify-content: start;
 `
 
 export const CommentWrapper = styled.div`

@@ -13,7 +13,7 @@ export function useComments(
 
   return useQuery({
     queryFn: async () =>
-      await CommentClientInstance.getPostComments(postId, params).then(
+      await CommentClientInstance.getPostComments({ postId, ...params }).then(
         async (res) =>
           await (res.json() as Promise<TGetPostCommentsResponseDto>)
       ),

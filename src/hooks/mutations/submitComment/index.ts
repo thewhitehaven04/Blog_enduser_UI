@@ -9,17 +9,17 @@ import { type TUseSubmitCommentResult } from 'Hooks/mutations/submitComment/type
 import { usePagination } from 'Hooks/pagination'
 import { produce } from 'immer'
 
-export function useSubmitComment(postId: string): TUseSubmitCommentResult {
+export function useSubmitComment(): TUseSubmitCommentResult {
   const queryClient = useQueryClient()
   const [pagination] = usePagination()
 
   return useMutation<TPostCommentResponseDto, Error, IPostCommentBody>({
-    mutationFn: async (comment) =>
-      await CommentClientInstance.postComment(postId, comment).then(
+    mutationFn: async (commentData) =>
+      await CommentClientInstance.postComment(commentData).then(
         async (res) => (await res.json()) as TPostCommentResponseDto
       ),
-    mutationKey: ['submitComment', postId],
-    onSuccess: (commentResponse) => {
+    mutationKey: ['submitComment'],
+    onSuccess: (commentResponse, { postId }) => {
       queryClient.setQueryData<TGetPostCommentsResponseDto>(
         ['comments', postId, pagination],
         (data) => {
@@ -33,7 +33,7 @@ export function useSubmitComment(postId: string): TUseSubmitCommentResult {
               })
             }
           }
-          throw new Error('No prior comment data')
+          throw new Error(`No comment data for the post ${postId}`)
         }
       )
     }

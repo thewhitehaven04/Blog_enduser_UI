@@ -15,5 +15,7 @@ export interface ITransformedCommentDto {
 
 export type TPostCommentResponseDto = TGenericResponse<ITransformedCommentDto>
 
+export type TUpdateCommentResponseDto = TGenericResponse<ITransformedCommentDto>
+
 export type TGetPostCommentsResponseDto =
   TPaginatedResponse<ITransformedCommentDto>
