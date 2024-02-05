@@ -47,6 +47,7 @@ export function Comment({
 
   const deleteCommentHandler = (): void => {
     deleteComment({ commentId })
+    handleToggleEditState()
   }
 
   const submitEditHandler: SubmitHandler<ICommentEditForm> = (

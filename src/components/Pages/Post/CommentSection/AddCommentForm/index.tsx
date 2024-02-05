@@ -1,6 +1,6 @@
 import * as SC from './styles'
 import { Controller, type SubmitHandler, useForm } from 'react-hook-form'
-import { type IAddCommentForm } from 'Pages/Post/CommentSection/AddCommentForm/types'
+import { type IAddCommentForm, type IAddCommentFormProps } from 'Pages/Post/CommentSection/AddCommentForm/types'
 import { useSubmitComment } from 'Hooks/mutations/submitComment'
 import { useParams } from 'react-router-dom'
 import { useUserContext } from 'Hooks/context/user'
@@ -12,7 +12,7 @@ import { RippleButton } from 'Components/Button'
 import { CommentEditor } from 'Pages/Post/CommentSection/CommentEditor'
 import { ErrorText } from 'Components/Common/Styles/Error'
 
-export function AddCommentSubsection(): JSX.Element {
+export function AddCommentSubsection({postId}: IAddCommentFormProps): JSX.Element {
   const {
     control,
     handleSubmit,
@@ -23,8 +23,6 @@ export function AddCommentSubsection(): JSX.Element {
   })
 
   const user = useUserContext()
-
-  const { postId } = useParams<'postId'>()
   const { mutate } = useSubmitComment()
 
   const submitHandler: SubmitHandler<IAddCommentForm> = (commentData) => {

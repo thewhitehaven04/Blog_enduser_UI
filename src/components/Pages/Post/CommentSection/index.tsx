@@ -39,7 +39,7 @@ export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
         {typeof commentCount === 'number' &&
           getCommentCountString(commentCount)}
       </span>
-      <AddCommentSubsection />
+      <AddCommentSubsection postId={postId} />
       <SC.CommentListWrapper>
         <CommentMutationContextProvider postId={postId}>
           <LoadedCommentList {...query} />
