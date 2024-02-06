@@ -8,7 +8,6 @@ import { AddCommentSubsection } from 'Pages/Post/CommentSection/AddCommentForm'
 import { LinkLikeButton } from 'Components/Common/LinkLikeButton/styles'
 import { Column } from 'Components/Common/Styles/Column/styles'
 import { getCommentCountString } from 'Pages/Post/CommentSection/utils'
-import { CommentMutationContextProvider } from 'Components/ContextProviders/CommentMutation'
 
 export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
   /** default pagination */
@@ -16,10 +15,9 @@ export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
   const defaultIncrement = 10
 
   const query = useComments(postId, paginationParams, defaultIncrement)
-  const { data, status, isRefetching } = query
+  const { data, isSuccess, isRefetching } = query
 
-  const commentCount =
-    status === 'success' && data?.success && data?.pagination.totalCount
+  const commentCount = isSuccess && data.pagination.totalCount
   const hasNextButton =
     commentCount !== false && paginationParams.count < commentCount
 
@@ -41,9 +39,7 @@ export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
       </span>
       <AddCommentSubsection postId={postId} />
       <SC.CommentListWrapper>
-        <CommentMutationContextProvider postId={postId}>
-          <LoadedCommentList {...query} />
-        </CommentMutationContextProvider>
+        <LoadedCommentList {...query} />
       </SC.CommentListWrapper>
       {hasNextButton && (
         <Column $alignment='start'>

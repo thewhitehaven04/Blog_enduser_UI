@@ -1,8 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import type { ISuccessfulPaginatedResponse } from 'Client/base/types/responses'
 import { CommentClientInstance } from 'Client/postComments'
 import { type IPostCommentBody } from 'Client/postComments/types/requests'
 import {
-  type TGetPostCommentsResponseDto,
+  type ITransformedCommentDto,
   type TPostCommentResponseDto
 } from 'Client/postComments/types/responses'
 import { type TUseSubmitCommentResult } from 'Hooks/mutations/submitComment/types'
@@ -21,22 +22,21 @@ export function useSubmitComment(): TUseSubmitCommentResult {
       ),
     mutationKey: ['submitComment'],
     onSuccess: (commentResponse, { postId }) => {
-      queryClient.setQueryData<TGetPostCommentsResponseDto>(
-        CommentsQueryKey({ postId, params: pagination }),
-        (data) => {
-          if (commentResponse.success) {
-            if (data != null) {
-              return produce(data, (draft) => {
-                if (draft?.success && commentResponse.success) {
-                  draft.pagination.totalCount += 1
-                  draft.data.unshift(commentResponse.data)
-                }
-              })
-            }
+      queryClient.setQueryData<
+        ISuccessfulPaginatedResponse<ITransformedCommentDto>
+      >(CommentsQueryKey({ postId, params: pagination }), (data) => {
+        if (commentResponse.success) {
+          if (data != null) {
+            return produce(data, (draft) => {
+              draft.pagination.totalCount += 1
+              draft.data.unshift(commentResponse.data)
+            })
           }
-          throw new Error(`No comment data for the post ${postId}`)
         }
-      )
+      })
+    },
+    onError: () => {
+      throw Error('Unable to submit the comment. Please, try again later')
     }
   })
 }

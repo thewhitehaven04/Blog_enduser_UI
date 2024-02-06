@@ -11,11 +11,13 @@ import { useState } from 'react'
 import { Controller, useForm, type SubmitHandler } from 'react-hook-form'
 import { CommentEditor } from 'Pages/Post/CommentSection/CommentEditor'
 import { LinkLikeButton } from 'Components/Common/LinkLikeButton/styles'
-import { UseCommentMutationContext } from 'Hooks/context/commentMutation'
 import { useUserContext } from 'Hooks/context/user'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { CommentEditFormSchema } from 'Pages/Post/CommentSection/Comment/validation'
 import { ErrorText } from 'Components/Common/Styles/Error'
+import { useUpdateComment } from 'Hooks/mutations/updateComment'
+import { useDeleteComment } from 'Hooks/mutations/deleteComment'
+import { useParams } from 'react-router-dom'
 
 export function Comment({
   author,
@@ -30,8 +32,7 @@ export function Comment({
   const {
     control,
     handleSubmit,
-    formState: { errors },
-    clearErrors
+    formState: { errors }
   } = useForm<ICommentEditForm>({
     defaultValues: {
       text
@@ -39,7 +40,11 @@ export function Comment({
     resolver: yupResolver(CommentEditFormSchema)
   })
 
-  const { updateComment, deleteComment } = UseCommentMutationContext()
+  const { postId = '' } = useParams<'postId'>()
+  const { mutate: updateComment, error: onUpdateError } =
+    useUpdateComment(postId)
+  const { mutate: deleteComment, error: onDeleteError } =
+    useDeleteComment(postId)
 
   const handleToggleEditState = (): void => {
     setIsEditing(!isEditing)
@@ -47,7 +52,6 @@ export function Comment({
 
   const deleteCommentHandler = (): void => {
     deleteComment({ commentId })
-    handleToggleEditState()
   }
 
   const submitEditHandler: SubmitHandler<ICommentEditForm> = (
@@ -55,7 +59,6 @@ export function Comment({
   ) => {
     handleToggleEditState()
     updateComment({ commentId, body: editCommentData })
-    clearErrors()
   }
 
   return (
@@ -74,7 +77,9 @@ export function Comment({
                 <CommentEditor {...restField} height={100} />
               )}
             />
-            <ErrorText>{errors.text?.message}</ErrorText>
+            <ErrorText>
+              {errors.text?.message ?? onUpdateError?.message}
+            </ErrorText>
           </>
         ) : (
           <Markdown remarkPlugins={[remarkGfm]}>{text}</Markdown>
@@ -89,11 +94,16 @@ export function Comment({
             <LinkLikeButton type='submit'>Save changes</LinkLikeButton>
           )}
           {canShowControls && (
-            <LinkLikeButton onClick={deleteCommentHandler}>
-              Delete
-            </LinkLikeButton>
+            <>
+              <LinkLikeButton type='button' onClick={deleteCommentHandler}>
+                Delete
+              </LinkLikeButton>
+            </>
           )}
         </SC.CommentControlsWrapper>
+        {onDeleteError != null && (
+          <ErrorText>{onDeleteError.message}</ErrorText>
+        )}
       </SC.CommentWrapper>
     </form>
   )

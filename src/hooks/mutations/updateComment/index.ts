@@ -1,8 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import type { ISuccessfulPaginatedResponse } from 'Client/base/types/responses'
 import { CommentClientInstance } from 'Client/postComments'
 import type { IPatchCommentBody } from 'Client/postComments/types/requests'
 import type {
-  TGetPostCommentsResponseDto,
+  ITransformedCommentDto,
   TUpdateCommentResponseDto
 } from 'Client/postComments/types/responses'
 import type { TUseUpdateCommentResult } from 'Hooks/mutations/updateComment/types'
@@ -26,21 +27,21 @@ export function useUpdateComment(postId: string): TUseUpdateCommentResult {
       ),
     mutationKey: ['updateComment'],
     onSuccess: (newCommentData, { commentId }) => {
-      queryClient.setQueryData<TGetPostCommentsResponseDto>(
-        CommentsQueryKey({ postId, params: pagination }),
-        (oldCommentData) => {
-          if (oldCommentData != null) {
-            return produce(oldCommentData, (draft) => {
-              if (draft.success && newCommentData.success) {
-                const indexOfCommentToUpdate = draft.data.findIndex(
-                  (comment) => comment._id === commentId
-                )
-                draft.data[indexOfCommentToUpdate] = newCommentData.data
-              }
-            })
-          }
+      queryClient.setQueryData<
+        ISuccessfulPaginatedResponse<ITransformedCommentDto>
+      >(CommentsQueryKey({ postId, params: pagination }), (oldCommentData) => {
+        if (oldCommentData != null) {
+          return produce(oldCommentData, (draft) => {
+            if (newCommentData.success) {
+              const indexOfCommentToUpdate = draft.data.findIndex(
+                (comment) => comment._id === commentId
+              )
+              draft.data[indexOfCommentToUpdate] = newCommentData.data
+            }
+            throw Error('Unable to update the comment at the moment')
+          })
         }
-      )
+      })
     }
   })
 }

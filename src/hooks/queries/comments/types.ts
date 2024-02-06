@@ -1,9 +1,10 @@
 import {
   type UseQueryResult,
 } from '@tanstack/react-query'
-import { type TGetPostCommentsResponseDto } from 'Client/postComments/types/responses'
+import type { ISuccessfulPaginatedResponse } from 'Client/base/types/responses'
+import { type ITransformedCommentDto } from 'Client/postComments/types/responses'
 
 export type TUseCommentsResult = UseQueryResult<
-  TGetPostCommentsResponseDto,
+  ISuccessfulPaginatedResponse<ITransformedCommentDto>, 
   Error
 >

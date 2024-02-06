@@ -1,6 +1,10 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
+import type { ISuccessfulPaginatedResponse } from 'Client/base/types/responses'
 import { CommentClientInstance } from 'Client/postComments'
-import { type TGetPostCommentsResponseDto } from 'Client/postComments/types/responses'
+import {
+  type ITransformedCommentDto,
+  type TGetPostCommentsResponseDto
+} from 'Client/postComments/types/responses'
 import { type IPaginationParams } from 'Hooks/pagination/types'
 import { type TUseCommentsResult } from 'Hooks/queries/comments/types'
 
@@ -20,14 +24,22 @@ export function useComments(
   const queryClient = useQueryClient()
 
   return useQuery({
-    queryFn: async () =>
-      await CommentClientInstance.getPostComments({ postId, ...params }).then(
-        async (res) =>
-          await (res.json() as Promise<TGetPostCommentsResponseDto>)
-      ),
+    queryFn: async () => {
+      const response = (await (
+        await CommentClientInstance.getPostComments({ postId, ...params })
+      ).json()) as TGetPostCommentsResponseDto
+
+      if (response.success) {
+        return response
+      }
+
+      throw new Error('Unable to retrieve comments for this post')
+    },
     queryKey: CommentsQueryKey({ postId, params }),
     initialData: () =>
-      queryClient.getQueryData<TGetPostCommentsResponseDto>(
+      queryClient.getQueryData<
+        ISuccessfulPaginatedResponse<ITransformedCommentDto>
+      >(
         CommentsQueryKey({
           postId,
           params: { ...params, count: params.count - countIncrement }

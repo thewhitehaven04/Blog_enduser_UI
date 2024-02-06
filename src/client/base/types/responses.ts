@@ -21,7 +21,7 @@ export interface IDataResponse<T> {
 
 export type TGenericResponse<T = null> = ISuccessfulResponse<T> | IErrorResponse
 
-interface ISuccessfulPaginatedResponse<T> {
+export interface ISuccessfulPaginatedResponse<T> {
   success: true
   data: T[]
   pagination: IPaginationDto
