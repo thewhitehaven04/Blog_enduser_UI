@@ -1,5 +1,5 @@
 import { type UseQueryResult, useQuery } from '@tanstack/react-query'
-import { type IDataResponse } from 'Client/base/types/responses'
+import { type ISuccessfulResponse } from 'Client/base/types/responses'
 import { PostsClientInstance } from 'Client/posts'
 import { type IFormattedPostDto } from 'Client/posts/types/responses'
 
@@ -10,7 +10,7 @@ export const PostQueryKey = ({ postId }: { postId: string }): string[] => [
 
 export function usePost(
   postId: string
-): UseQueryResult<IDataResponse<IFormattedPostDto>, Error> {
+): UseQueryResult<ISuccessfulResponse<IFormattedPostDto>, Error> {
   return useQuery({
     queryFn: async () =>
       await PostsClientInstance.getPost(postId).then(

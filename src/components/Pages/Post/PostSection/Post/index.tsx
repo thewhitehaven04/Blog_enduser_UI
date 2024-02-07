@@ -8,9 +8,9 @@ function PostView({ title, author, text, published, summary }: IPostProps): JSX.
   return (
     <SC.PostViewWrapper $alignment='center'>
       <SC.PostTitle>{title}</SC.PostTitle>
-      <SC.PostPublished>
+      <span>
         By {author.username}, {toRelativeDate(published)}
-      </SC.PostPublished>
+      </span>
       <SC.PostSummary>{summary}</SC.PostSummary>
       <SC.PostText dangerouslySetInnerHTML={{ __html: text }} />
     </SC.PostViewWrapper>

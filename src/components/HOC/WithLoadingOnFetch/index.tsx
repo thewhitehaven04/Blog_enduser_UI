@@ -1,5 +1,5 @@
 import { type UseQueryResult } from '@tanstack/react-query'
-import { type TGenericResponse } from 'Client/base/types/responses'
+import { type ISuccessfulResponse } from 'Client/base/types/responses'
 import { QueryError } from 'Components/Common/QueryError'
 import { SectionLoading } from 'Components/Common/SectionLoading'
 import { type FC } from 'react'
@@ -10,8 +10,8 @@ export function withLoadingOnInitialFetch<T>(component: FC<{ value: T }>) {
     isLoading,
     data,
     error
-  }: UseQueryResult<TGenericResponse<T>, Error>) {
-    if (isSuccess && data?.success) {
+  }: UseQueryResult<ISuccessfulResponse<T>, Error>) {
+    if (isSuccess) {
       return component({ value: data.data })
     } else if (isLoading) {
       return <SectionLoading />

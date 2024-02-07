@@ -9,14 +9,9 @@ interface IErrorResponse {
   errors: IGenericError[] 
 }
 
-interface ISuccessfulResponse<T> {
+export interface ISuccessfulResponse<T> {
   success: true
   data: T
-}
-
-export interface IDataResponse<T> {
-  success: true
-  data: NonNullable<T>
 }
 
 export type TGenericResponse<T = null> = ISuccessfulResponse<T> | IErrorResponse
