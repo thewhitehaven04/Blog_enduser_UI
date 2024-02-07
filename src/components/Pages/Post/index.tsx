@@ -3,16 +3,17 @@ import { MorePostsSection } from 'Pages/Post/MorePostsSection'
 import { PostSection } from 'Pages/Post/PostSection'
 import { useParams } from 'react-router-dom'
 import * as SC from './styles'
+import { MainPane } from 'Components/Common/Styles/MainPane/styles'
 
 export function PostPage(): JSX.Element {
   const { postId = '' } = useParams<'postId'>()
 
   return (
     <SC.PostPageWrapper>
-      <SC.PostPageColumnWrapper>
+      <MainPane>
         <PostSection postId={postId} />
         <CommentSection postId={postId} />
-      </SC.PostPageColumnWrapper>
+      </MainPane>
       <MorePostsSection postId={postId} />
     </SC.PostPageWrapper>
   )

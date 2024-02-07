@@ -10,6 +10,7 @@ export const PostPreviewWrapper = styled.article`
 
 export const PostHeaderLink = styled(Link)`
   text-decoration: none;
+  color: inherit;
 `
 
 export const PostPreviewPublished = styled.span`

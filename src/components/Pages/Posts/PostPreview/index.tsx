@@ -3,6 +3,7 @@ import * as SC from './styles'
 import { getPostLink } from 'Pages/Posts/PostPreview/helpers'
 import { withLoadingOnInitialFetch } from 'Components/HOC/WithLoadingOnFetch'
 import type { IFormattedPostDto } from 'Client/posts/types/responses'
+import { toRelativeDate } from 'Pages/Post/CommentSection/Comment/helpers'
 
 function PostPreview({
   id,
@@ -17,7 +18,7 @@ function PostPreview({
         <SC.PostPreviewHeader>{title}</SC.PostPreviewHeader>
       </SC.PostHeaderLink>
       <SC.PostPreviewPublished>
-        {published}, by {author}
+        {toRelativeDate(published)}, by {author}
       </SC.PostPreviewPublished>
       <SC.PostPreviewText dangerouslySetInnerHTML={{ __html: text }} />
     </SC.PostPreviewWrapper>
