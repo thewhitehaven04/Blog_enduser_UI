@@ -26,7 +26,7 @@ export function AddCommentSubsection({postId}: IAddCommentFormProps): JSX.Elemen
   const { mutate } = useSubmitComment()
 
   const submitHandler: SubmitHandler<IAddCommentForm> = (commentData) => {
-    mutate({ postId: postId ?? '', text: commentData.text })
+    mutate({ postId, text: commentData.text })
   }
 
   useEffect(() => {

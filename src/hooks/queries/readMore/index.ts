@@ -1,6 +1,11 @@
 import { type UseQueryResult, useQuery } from '@tanstack/react-query'
+import type {
+  ISuccessfulPaginatedResponse,
+} from 'Client/base/types/responses'
 import { PostsClientInstance } from 'Client/posts'
-import { type TGetReadMoreResponse } from 'Client/posts/types/responses'
+import {
+  type IFormattedPostDto,
+} from 'Client/posts/types/responses'
 
 export const ReadMoreKey = ({
   postId
@@ -10,12 +15,19 @@ export const ReadMoreKey = ({
 
 export function useReadMore(
   postId: string
-): UseQueryResult<TGetReadMoreResponse, Error> {
+): UseQueryResult<ISuccessfulPaginatedResponse<IFormattedPostDto>, Error> {
   return useQuery({
-    queryFn: async () =>
-      await PostsClientInstance.getReadMore(postId).then(
-        async (response) => (await response.json()) as TGetReadMoreResponse
-      ),
+    queryFn: async () => {
+      const response = await PostsClientInstance.getReadMore(postId).then(
+        async (response) =>
+          (await response.json()) as ISuccessfulPaginatedResponse<IFormattedPostDto>
+      )
+      if (response.success) {
+        return response
+      }
+
+      throw Error('Unable to retrieve post recommendations')
+    },
     queryKey: ReadMoreKey({ postId })
   })
 }
