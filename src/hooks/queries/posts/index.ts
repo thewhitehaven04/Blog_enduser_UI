@@ -11,7 +11,8 @@ export const PostsQueryKey = ({
 }): [string, IGetPostsRequestParamsDto] => ['posts', pagination]
 
 export function usePosts(
-  pagination: IGetPostsRequestParamsDto
+  pagination: IGetPostsRequestParamsDto,
+  defaultIncrement: number
 ): UseQueryResult<ISuccessfulPaginatedResponse<IFormattedPostDto>, Error> {
   return useQuery({
     queryFn: async () => {

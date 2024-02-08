@@ -9,11 +9,14 @@ import type {
 import type { TUseUpdateCommentResult } from 'Hooks/mutations/updateComment/types'
 import { usePagination } from 'Hooks/pagination'
 import { CommentsQueryKey } from 'Hooks/queries/comments'
+import { useToasterEnqueue } from 'Hooks/toaster'
+import { EToastType } from 'Hooks/context/toaster/types'
 import { produce } from 'immer'
 
 export function useUpdateComment(postId: string): TUseUpdateCommentResult {
   const queryClient = useQueryClient()
   const [pagination] = usePagination()
+  const { enqueueToast } = useToasterEnqueue()
 
   return useMutation<
     TUpdateCommentResponseDto,
@@ -30,6 +33,10 @@ export function useUpdateComment(postId: string): TUseUpdateCommentResult {
       queryClient.setQueryData<
         ISuccessfulPaginatedResponse<ITransformedCommentDto>
       >(CommentsQueryKey({ postId, params: pagination }), (oldCommentData) => {
+        enqueueToast({
+          type: EToastType.ERROR,
+          text: 'Unable to update comment'
+        })
         if (oldCommentData != null) {
           return produce(oldCommentData, (draft) => {
             if (newCommentData.success) {
@@ -38,7 +45,6 @@ export function useUpdateComment(postId: string): TUseUpdateCommentResult {
               )
               draft.data[indexOfCommentToUpdate] = newCommentData.data
             }
-            throw Error('Unable to update the comment at the moment')
           })
         }
       })

@@ -33,6 +33,6 @@ export function useDeleteComment(postId: string): TUseDeleteCommentResult {
           'Unable to delete the comment at the moment. Please, try again later.'
         )
       })
-    }
+    },
   })
 }

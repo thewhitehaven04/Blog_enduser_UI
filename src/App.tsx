@@ -6,6 +6,8 @@ import { GlobalStyles } from 'Components/Common/Styles/global'
 import { UserContextProvider } from 'Components/ContextProviders/UserContext'
 import { queryClient } from 'Client/query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { Toaster } from 'Components/Common/Toaster'
+import { ToasterContextProvider } from 'Hooks/context/toaster'
 
 export function App(): JSX.Element {
   return (
@@ -13,9 +15,12 @@ export function App(): JSX.Element {
       <GlobalStyles />
       <QueryClientProvider client={queryClient}>
         <UserContextProvider>
-          <AppRouter />
+          <ToasterContextProvider>
+            <AppRouter />
+            <Toaster />
+          </ToasterContextProvider>
         </UserContextProvider>
-        <ReactQueryDevtools initialIsOpen={false}/>
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </>
   )
