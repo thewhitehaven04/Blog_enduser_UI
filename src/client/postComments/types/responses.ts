@@ -11,6 +11,7 @@ export interface ITransformedCommentDto {
     username: string
   }
   created: string
+  post: string
 }
 
 export type TPostCommentResponseDto = TGenericResponse<ITransformedCommentDto>

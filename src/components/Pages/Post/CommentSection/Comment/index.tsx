@@ -17,12 +17,12 @@ import { CommentEditFormSchema } from 'Pages/Post/CommentSection/Comment/validat
 import { ErrorText } from 'Components/Common/Styles/Error'
 import { useUpdateComment } from 'Hooks/mutations/updateComment'
 import { useDeleteComment } from 'Hooks/mutations/deleteComment'
-import { useParams } from 'react-router-dom'
 
 export function Comment({
   author,
   text,
   created,
+  postId,
   id: commentId
 }: ICommentProps): JSX.Element {
   const [isEditing, setIsEditing] = useState<boolean>(false)
@@ -40,7 +40,6 @@ export function Comment({
     resolver: yupResolver(CommentEditFormSchema)
   })
 
-  const { postId = '' } = useParams<'postId'>()
   const { mutate: updateComment, error: onUpdateError } =
     useUpdateComment(postId)
   const { mutate: deleteComment, error: onDeleteError } =

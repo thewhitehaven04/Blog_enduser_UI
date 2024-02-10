@@ -3,6 +3,7 @@ export interface ICommentProps {
   author: string 
   text: string
   created: string 
+  postId: string
 }
 
 export interface ICommentEditForm {

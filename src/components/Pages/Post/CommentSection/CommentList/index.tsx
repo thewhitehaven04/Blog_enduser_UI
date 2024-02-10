@@ -9,13 +9,8 @@ function CommentList({
 }): JSX.Element {
   return (
     <>
-      {data.map((comment) => (
-        <Comment
-          key={comment._id}
-          id={comment._id}
-          {...comment}
-          author={comment.author.username}
-        />
+      {data.map(({ _id, author: { username }, post, ...rest }) => (
+        <Comment {...rest} key={_id} id={_id} author={username} postId={post} />
       ))}
     </>
   )
