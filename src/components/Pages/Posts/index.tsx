@@ -1,9 +1,9 @@
-import { Button } from 'Components/Button/styles'
-import { Column } from 'Components/Common/Styles/Column/styles'
-import { MainPane } from 'Components/Common/Styles/MainPane/styles'
+import { RippleButton } from 'Components/Common/Button'
+import { Column } from 'Components/Common/Styles/Column'
+import { MainPane } from 'Components/Common/Styles/MainPane'
 import { usePagination } from 'Hooks/pagination'
-import { usePosts } from 'Hooks/queries/posts'
-import { LoadedPostPreviewSection } from 'Pages/Posts/PostPreview'
+import { usePosts } from 'Pages/Posts/hooks/queryPosts'
+import { LoadedPostPreviewSection } from 'Pages/Posts/components/PostPreview'
 
 export function PostsPage(): JSX.Element {
   const [paginationParams, setPaginationParams] = usePagination()
@@ -31,9 +31,9 @@ export function PostsPage(): JSX.Element {
         <LoadedPostPreviewSection {...posts} />
       </MainPane>
       {hasMorePosts && (
-        <Button type='button' onClick={handleLoadMore}>
+        <RippleButton type='button' onClick={handleLoadMore}>
           Load more
-        </Button>
+        </RippleButton>
       )}
     </Column>
   )

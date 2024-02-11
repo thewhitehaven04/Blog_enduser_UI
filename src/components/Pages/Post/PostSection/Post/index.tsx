@@ -2,7 +2,7 @@ import { withLoadingOnInitialFetch } from 'Components/HOC/WithLoadingOnFetch'
 import { type IPostProps } from 'Pages/Post/PostSection/Post/types'
 import * as SC from './styles'
 import { type IFormattedPostDto } from 'Client/posts/types/responses'
-import { toRelativeDate } from 'Pages/Post/CommentSection/Comment/helpers'
+import { toRelativeDate } from 'Pages/Post/CommentSection/components/Comment/helpers'
 
 function PostView({ title, author, text, published, summary }: IPostProps): JSX.Element {
   return (

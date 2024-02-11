@@ -1,4 +1,4 @@
-import { Row } from 'Components/Common/Styles/Row/styles'
+import { Row } from 'Components/Common/Styles/Row'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 

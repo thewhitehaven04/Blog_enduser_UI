@@ -31,7 +31,7 @@
       "Utils/*": ["src/utils/*"],
       "Router/*": ["src/router/*"],
       "Context/*": ["src/context/*"],
-      "Errors/*": ["src/errors/*"],
+      "Errors/*": ["src/client/errors/*"],
       "Queries/*": ["src/hooks/queries/*"],
       "@/*": ["src/*"],
     },

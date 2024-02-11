@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Column } from 'Components/Common/Styles/Column/styles'
+import { Column } from 'Components/Common/Styles/Column'
 import styled from 'styled-components'
 
 export const Overlay = styled.div`

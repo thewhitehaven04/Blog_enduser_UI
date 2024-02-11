@@ -1,4 +1,4 @@
-import { usePost } from 'Hooks/queries/post'
+import { usePost } from 'Pages/Post/PostSection/hooks/queryPost'
 import { LoadedPost } from 'Pages/Post/PostSection/Post'
 import { type IPostSectionProps } from 'Pages/Post/PostSection/types'
 

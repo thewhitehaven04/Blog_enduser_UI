@@ -1,5 +1,5 @@
 import appConfig from '@/appConfig'
-import { ClientError } from 'Errors/clientError'
+import { ClientError } from 'Client/errors/clientError'
 import { getAccessToken } from 'Service/accessToken'
 
 export default class BaseApiClient {

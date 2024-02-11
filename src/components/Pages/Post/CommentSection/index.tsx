@@ -1,12 +1,12 @@
 import { usePagination } from 'Hooks/pagination'
-import { LoadedCommentList } from './CommentList'
+import { LoadedCommentList } from './components/CommentList'
 import { type ICommentSectionProps } from 'Pages/Post/CommentSection/types'
 import { InlineLoading } from 'Components/Common/InlineLoading'
-import { useComments } from 'Hooks/queries/comments'
+import { useComments } from 'Pages/Post/CommentSection/hooks/queryComments'
 import * as SC from './styles'
-import { AddCommentSubsection } from 'Pages/Post/CommentSection/AddCommentForm'
+import { AddCommentSubsection } from 'Pages/Post/CommentSection/components/AddCommentForm'
 import { LinkLikeButton } from 'Components/Common/LinkLikeButton/styles'
-import { Column } from 'Components/Common/Styles/Column/styles'
+import { Column } from 'Components/Common/Styles/Column'
 import { getCommentCountString } from 'Pages/Post/CommentSection/utils'
 
 export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {

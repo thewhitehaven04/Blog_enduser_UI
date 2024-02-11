@@ -3,7 +3,7 @@ import { MorePostsSection } from 'Pages/Post/MorePostsSection'
 import { PostSection } from 'Pages/Post/PostSection'
 import { useParams } from 'react-router-dom'
 import * as SC from './styles'
-import { MainPane } from 'Components/Common/Styles/MainPane/styles'
+import { MainPane } from 'Components/Common/Styles/MainPane'
 
 export function PostPage(): JSX.Element {
   const { postId = '' } = useParams<'postId'>()

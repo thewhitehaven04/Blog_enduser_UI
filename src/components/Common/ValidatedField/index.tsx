@@ -1,5 +1,5 @@
-import { Column } from 'Components/Common/Styles/Column/styles'
-import { Row } from 'Components/Common/Styles/Row/styles'
+import { Column } from 'Components/Common/Styles/Column'
+import { Row } from 'Components/Common/Styles/Row'
 import { Label, ValidationMessage } from 'Components/Common/ValidatedField/styles'
 import { type IValidatedFieldProps } from 'Components/Common/ValidatedField/types'
 

@@ -1,6 +1,6 @@
 import { Toast } from 'Components/Common/Toast'
-import { useToaster } from 'Hooks/toaster'
 import * as SC from './styles'
+import { useToaster } from 'Components/Common/Toaster/hooks/toaster'
 
 export function Toaster(): JSX.Element {
   const { queue, dismissToast } = useToaster()
