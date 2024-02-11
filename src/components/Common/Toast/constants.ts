@@ -20,3 +20,5 @@ export const TOAST_ICONS_MAP: Record<EToastType, IToastIconProps> = {
     color: 'green'
   }
 }
+
+export const ANIMATION_TIMEOUT = 400

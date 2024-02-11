@@ -38,6 +38,9 @@ export function AddCommentSubsection({
       {
         onError: () => {
           toast({ type: EToastType.ERROR, text: SUBMIT_HANDLER_ERROR_MESSAGE })
+        },
+        onSuccess: () => {
+          toast({ type: EToastType.SUCCESS, text: 'Comment added' })
         }
       }
     )

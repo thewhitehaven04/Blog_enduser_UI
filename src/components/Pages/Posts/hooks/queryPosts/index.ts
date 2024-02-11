@@ -33,7 +33,7 @@ export function usePosts(
         return postResponse
       }
 
-      throw new Error('Unable to load post data. Please, try again later')
+      throw new Error('Unable to retrieve post data')
     },
     queryKey: PostsQueryKey({ pagination }),
     initialData: () =>

@@ -8,21 +8,24 @@ export const ToastWrapper = styled.div`
 
   padding: 16px;
   border-radius: 8px;
-  background-color: var(--gray-toaster);
-  color: black; 
+  background-color: var(--light-gray);
+  color: black;
+  border: 1px solid var(--gray-border);
 
   cursor: pointer;
-  
-  animation: slide 0.2s ease-in-out forwards;
 
-  @keyframes slide {
+  @keyframes slidein {
     from {
-      position: fixed;
-      right: 100vw;
-    }  
+      transform: translateY(100vh);
+    }
 
     to {
-      position: static;
+      transform: translateX(0);
     }
   }
-` 
+
+  animation-name: slidein;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+`

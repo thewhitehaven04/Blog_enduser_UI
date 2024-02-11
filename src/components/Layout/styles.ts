@@ -34,4 +34,5 @@ export const HeaderLink = styled(Link)`
   color: black;
   font-weight: normal;
   font-size: 13pt;
+  padding-left: 40px;
 `

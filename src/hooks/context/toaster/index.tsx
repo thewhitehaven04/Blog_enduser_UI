@@ -5,7 +5,6 @@ import {
   useState,
   type PropsWithChildren,
   useCallback,
-  useMemo
 } from 'react'
 
 export const ToasterContext = createContext<{

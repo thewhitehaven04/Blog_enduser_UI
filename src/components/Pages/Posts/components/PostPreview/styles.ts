@@ -6,6 +6,7 @@ export const PostPreviewWrapper = styled.article`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 8px;
 `
 
 export const PostHeaderLink = styled(Link)`
@@ -20,6 +21,7 @@ export const PostPreviewPublished = styled.span`
 export const PostPreviewHeader = styled.h1`
   font-size: large;
   font-family: var(--font-serif);
+  margin: 0;
 `
 
 export const PostPreviewText = styled.div`
