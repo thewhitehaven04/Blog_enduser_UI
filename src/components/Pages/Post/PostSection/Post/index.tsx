@@ -1,4 +1,4 @@
-import { withLoadingOnInitialFetch } from 'Components/HOC/WithLoadingOnFetch'
+import { withLoadingOnFetch } from 'Components/HOC/WithLoadingOnFetch'
 import { type IPostProps } from 'Pages/Post/PostSection/Post/types'
 import * as SC from './styles'
 import { type IFormattedPostDto } from 'Client/posts/types/responses'
@@ -17,7 +17,7 @@ function PostView({ title, author, text, published, summary }: IPostProps): JSX.
   )
 }
 
-export const LoadedPost = withLoadingOnInitialFetch<IFormattedPostDto>(
+export const LoadedPost = withLoadingOnFetch<IFormattedPostDto>(
   ({ value }) => (
     <PostView
       text={value.text}

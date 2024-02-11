@@ -24,7 +24,6 @@ export function useComments(
   countIncrement: number
 ): TUseCommentsResult {
   const queryClient = useQueryClient()
-  const { toast } = useToasterEnqueue()
 
   return useQuery({
     queryFn: async () => {
@@ -36,7 +35,7 @@ export function useComments(
         return response
       }
 
-      toast({ text: 'Unable to retrieve comment data', type: EToastType.ERROR })
+      throw new Error('Unable to retrieve comment data')
     },
     queryKey: CommentsQueryKey({ postId, params }),
     initialData: () =>
@@ -47,6 +46,6 @@ export function useComments(
           postId,
           params: { ...params, count: params.count - countIncrement }
         })
-      )
+      ),
   })
 }

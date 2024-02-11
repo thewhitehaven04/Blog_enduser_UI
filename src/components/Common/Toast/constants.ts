@@ -13,7 +13,7 @@ export const TOAST_ICONS_MAP: Record<EToastType, IToastIconProps> = {
   },
   [EToastType.INFO]: {
     icon: faCircleInfo,
-    color: 'black'
+    color: 'orange'
   },
   [EToastType.SUCCESS]: {
     icon: faCheck,

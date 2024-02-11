@@ -17,6 +17,10 @@ import { CommentEditFormSchema } from 'Pages/Post/CommentSection/components/Comm
 import { ErrorText } from 'Components/Common/Styles/Error'
 import { useUpdateComment } from 'Pages/Post/CommentSection/components/Comment/hooks/mutationUpdateComment'
 import { useDeleteComment } from 'Pages/Post/CommentSection/components/Comment/hooks/mutationDeleteComment'
+import {
+  DELETE_HANDLER_ERROR_MESSAGE,
+  UPDATE_HANDLER_ERROR_MESSAGE
+} from 'Pages/Post/CommentSection/components/Comment/constants'
 
 export function Comment({
   author,
@@ -26,6 +30,8 @@ export function Comment({
   id: commentId
 }: ICommentProps): JSX.Element {
   const [isEditing, setIsEditing] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string>('')
+
   const user = useUserContext()
   const canShowControls = user?.username === author
 
@@ -40,27 +46,52 @@ export function Comment({
     resolver: yupResolver(CommentEditFormSchema)
   })
 
-  const { mutate: updateComment, error: onUpdateError } =
-    useUpdateComment(postId)
-  const { mutate: deleteComment, error: onDeleteError } =
-    useDeleteComment(postId)
-
-  const handleToggleEditState = (): void => {
+  const toggleEditState = (): void => {
     setIsEditing(!isEditing)
   }
 
+  const displayError = (errorMessage: string): void => {
+    setErrorMessage(errorMessage)
+  }
+
+  const clearErrors = (): void => {
+    setErrorMessage('')
+  }
+
   const deleteCommentHandler = (): void => {
-    deleteComment({ commentId })
+    deleteComment(
+      { commentId },
+      {
+        onSuccess: () => {
+          toggleEditState()
+          clearErrors()
+        },
+        onError: () => {
+          displayError(DELETE_HANDLER_ERROR_MESSAGE)
+        }
+      }
+    )
   }
 
   const submitEditHandler: SubmitHandler<ICommentEditForm> = (
     editCommentData
   ) => {
-    updateComment({ commentId, body: editCommentData })
-    if (onUpdateError == null) {
-      handleToggleEditState()
-    }
+    updateComment(
+      { commentId, body: editCommentData },
+      {
+        onSuccess: () => {
+          toggleEditState()
+          clearErrors()
+        },
+        onError: () => {
+          displayError(UPDATE_HANDLER_ERROR_MESSAGE)
+        }
+      }
+    )
   }
+
+  const { mutate: updateComment } = useUpdateComment(postId)
+  const { mutate: deleteComment } = useDeleteComment(postId)
 
   return (
     <form onSubmit={handleSubmit(submitEditHandler)}>
@@ -79,7 +110,7 @@ export function Comment({
               )}
             />
             <ErrorText>
-              {errors.text?.message ?? onUpdateError?.message}
+              {errors.text?.message ?? errorMessage}
             </ErrorText>
           </>
         ) : (
@@ -87,7 +118,7 @@ export function Comment({
         )}
         <SC.CommentControlsWrapper>
           {canShowControls && !isEditing && (
-            <LinkLikeButton onClick={handleToggleEditState}>
+            <LinkLikeButton onClick={toggleEditState}>
               Edit comment
             </LinkLikeButton>
           )}
@@ -102,9 +133,6 @@ export function Comment({
             </>
           )}
         </SC.CommentControlsWrapper>
-        {onDeleteError != null && (
-          <ErrorText>{onDeleteError.message}</ErrorText>
-        )}
       </SC.CommentWrapper>
     </form>
   )

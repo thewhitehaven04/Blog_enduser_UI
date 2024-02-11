@@ -1,5 +1,5 @@
 import type { IFormattedPostDto } from 'Client/posts/types/responses'
-import { withLoadingOnInitialFetch } from 'Components/HOC/WithLoadingOnFetch'
+import { withLoadingOnFetch } from 'Components/HOC/WithLoadingOnFetch'
 import * as SC from './styles'
 import { type IShortPostProps } from 'Pages/Post/MorePostsSection/components/ShortPostPreview/types'
 
@@ -18,7 +18,7 @@ function ShortPostPreview({
   )
 }
 
-export const LoadedPostList = withLoadingOnInitialFetch<IFormattedPostDto[]>(
+export const LoadedPostList = withLoadingOnFetch<IFormattedPostDto[]>(
   (props) => (
     <>
       {props.value.map(({ id, title, summary }) => (

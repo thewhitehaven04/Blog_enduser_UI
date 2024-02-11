@@ -17,7 +17,6 @@ export default class BaseApiClient {
     args?: RequestInit
   ): Promise<Response> {
     const params = new URLSearchParams(queryParams).toString()
-
     const abortSignal = AbortSignal.timeout(appConfig.requestTimeout)
     const response = await fetch(`${this.rootUrl}/${endpoint}?${params}`, {
       ...args,
@@ -34,7 +33,6 @@ export default class BaseApiClient {
     if (abortSignal.aborted || response.status >= 500) {
       throw new ClientError('Unable to connect to our servers', response)
     }
-
     return response
   }
 

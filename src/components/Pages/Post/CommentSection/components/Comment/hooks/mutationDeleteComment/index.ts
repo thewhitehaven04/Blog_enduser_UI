@@ -26,12 +26,11 @@ export function useDeleteComment(postId: string): TUseDeleteCommentResult {
       >(CommentsQueryKey({ postId, params: pagination }), (comments) => {
         if (comments != null && deleteResponse.success) {
           return produce(comments, (draft) => {
-            draft.data = draft.data.filter((comment) => comment._id !== commentId)
+            draft.data = draft.data.filter(
+              (comment) => comment._id !== commentId
+            )
           })
         }
-        throw new Error(
-          'Unable to delete the comment at the moment. Please, try again later.'
-        )
       })
     },
   })

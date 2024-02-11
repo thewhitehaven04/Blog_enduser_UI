@@ -4,6 +4,8 @@ import {
   createContext,
   useState,
   type PropsWithChildren,
+  useCallback,
+  useMemo
 } from 'react'
 
 export const ToasterContext = createContext<{
@@ -19,17 +21,20 @@ export function ToasterContextProvider({
 }: PropsWithChildren): JSX.Element {
   const [queue, setQueue] = useState<IToastInstance[]>([])
 
-  const dismissToast = (toast: IToastInstance): void => {
+  const dismissToast = useCallback((toast: IToastInstance) => {
     setQueue((queue) => queue.filter((_toast) => _toast !== toast))
-  }
+  }, [])
 
-  const toast = (_toast: IToastInstance): void => {
-    setQueue((queue) => [...queue, _toast])
+  const toast = useCallback(
+    (_toast: IToastInstance) => {
+      setQueue((queue) => [...queue, _toast])
 
-    setTimeout(() => {
-      dismissToast(_toast)
-    }, TOAST_TIMEOUT)
-  }
+      setTimeout(() => {
+        dismissToast(_toast)
+      }, TOAST_TIMEOUT)
+    },
+    [dismissToast]
+  )
 
   return (
     <ToasterContext.Provider value={{ queue, dismissToast }}>

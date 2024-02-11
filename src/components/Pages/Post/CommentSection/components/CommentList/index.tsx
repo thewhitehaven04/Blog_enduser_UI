@@ -1,5 +1,5 @@
 import { type ITransformedCommentDto } from 'Client/postComments/types/responses'
-import { withLoadingOnInitialFetch } from 'Components/HOC/WithLoadingOnFetch'
+import { withLoadingOnFetch } from 'Components/HOC/WithLoadingOnFetch'
 import { Comment } from 'Pages/Post/CommentSection/components/Comment'
 
 function CommentList({
@@ -16,6 +16,6 @@ function CommentList({
   )
 }
 
-export const LoadedCommentList = withLoadingOnInitialFetch<
+export const LoadedCommentList = withLoadingOnFetch<
   ITransformedCommentDto[]
 >((props) => <CommentList data={props.value} />)

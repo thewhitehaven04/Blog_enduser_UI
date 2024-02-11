@@ -11,5 +11,5 @@ export function useToaster(): {
     return toasterContext
   }
 
-  throw Error('useToaster must be called within ToasterContextProvider')
+  throw new Error('useToaster must be called within ToasterContextProvider')
 }

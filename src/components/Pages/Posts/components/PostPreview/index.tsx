@@ -1,7 +1,7 @@
 import type { IPostPreviewProps } from 'Pages/Posts/components/PostPreview/types'
 import * as SC from './styles'
 import { getPostLink } from 'Pages/Posts/components/PostPreview/helpers'
-import { withLoadingOnInitialFetch } from 'Components/HOC/WithLoadingOnFetch'
+import { withLoadingOnFetch } from 'Components/HOC/WithLoadingOnFetch'
 import type { IFormattedPostDto } from 'Client/posts/types/responses'
 import { toRelativeDate } from 'Pages/Post/CommentSection/components/Comment/helpers'
 
@@ -25,7 +25,7 @@ function PostPreview({
   )
 }
 
-export const LoadedPostPreviewSection = withLoadingOnInitialFetch<IFormattedPostDto[]>(
+export const LoadedPostPreviewSection = withLoadingOnFetch<IFormattedPostDto[]>(
   ({ value }) =>
     value.map(({ author: { username }, ...rest }) => (
       <PostPreview key={rest.id} {...rest} author={username} />

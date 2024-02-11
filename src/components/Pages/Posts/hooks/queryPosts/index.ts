@@ -10,8 +10,6 @@ import {
   type IFormattedPostDto,
   type TGetPostsResponse
 } from 'Client/posts/types/responses'
-import { EToastType } from 'Hooks/context/toaster/types'
-import { useToasterEnqueue } from 'Hooks/toasterEnqueue'
 
 export const PostsQueryKey = ({
   pagination
@@ -23,25 +21,19 @@ export function usePosts(
   pagination: IGetPostsRequestParamsDto,
   defaultIncrement: number
 ): UseQueryResult<ISuccessfulPaginatedResponse<IFormattedPostDto>, Error> {
-  const { toast } = useToasterEnqueue()
   const queryClient = useQueryClient()
 
   return useQuery({
     queryFn: async () => {
-      try {
-        const postResponse = (await (
-          await PostsClientInstance.getPosts(pagination)
-        ).json()) as TGetPostsResponse
+      const postResponse = (await (
+        await PostsClientInstance.getPosts(pagination)
+      ).json()) as TGetPostsResponse
 
-        if (postResponse.success) {
-          return postResponse
-        }
-      } catch (err) {
-        toast({
-          text: 'Unable to load post data. Please, try again later',
-          type: EToastType.ERROR
-        })
+      if (postResponse.success) {
+        return postResponse
       }
+
+      throw new Error('Unable to load post data. Please, try again later')
     },
     queryKey: PostsQueryKey({ pagination }),
     initialData: () =>

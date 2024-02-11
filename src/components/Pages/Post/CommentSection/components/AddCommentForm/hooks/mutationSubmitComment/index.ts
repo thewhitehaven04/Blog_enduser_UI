@@ -34,9 +34,6 @@ export function useSubmitComment(): TUseSubmitCommentResult {
           }
         }
       })
-    },
-    onError: () => {
-      throw Error('Unable to submit the comment. Please, try again later')
     }
   })
 }

@@ -42,8 +42,5 @@ export function useUpdateComment(postId: string): TUseUpdateCommentResult {
         }
       })
     },
-    onError: () => {
-      throw Error('Unable to update the comment. Please, try again later')
-    }
   })
 }

@@ -12,4 +12,17 @@ export const ToastWrapper = styled.div`
   color: black; 
 
   cursor: pointer;
+  
+  animation: slide 0.2s ease-in-out forwards;
+
+  @keyframes slide {
+    from {
+      position: fixed;
+      right: 100vw;
+    }  
+
+    to {
+      position: static;
+    }
+  }
 ` 

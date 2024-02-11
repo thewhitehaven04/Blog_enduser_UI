@@ -8,8 +8,9 @@ export function AppRouter(): JSX.Element {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<AppLayout />}>
+          <Route index element={<PostsPage />} />
+          <Route path='posts' element={<PostsPage/>}/>
           <Route path='post/:postId/comments' element={<PostPage />} />
-          <Route path='posts' element={<PostsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
