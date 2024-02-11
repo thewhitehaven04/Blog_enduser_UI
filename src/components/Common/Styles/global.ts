@@ -15,7 +15,8 @@ export const GlobalStyles = createGlobalStyle`
     --deemphasized-text: #666;
     --gray: #6669;
     --gray-border: #8884;
-    --gray-background: #ddd6;
+    --gray-background: #DDD6;
+    --gray-toaster: #ddd;
     --gray-shadow: #333C;
     --link-blue: #034694; 
     
@@ -44,5 +45,6 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     margin: 0;
+    position: relative;
   }
 `

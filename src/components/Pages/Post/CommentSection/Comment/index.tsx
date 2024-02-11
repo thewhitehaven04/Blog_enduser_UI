@@ -56,8 +56,10 @@ export function Comment({
   const submitEditHandler: SubmitHandler<ICommentEditForm> = (
     editCommentData
   ) => {
-    handleToggleEditState()
     updateComment({ commentId, body: editCommentData })
+    if (onUpdateError == null) {
+      handleToggleEditState()
+    }
   }
 
   return (

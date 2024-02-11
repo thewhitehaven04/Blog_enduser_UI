@@ -1,4 +1,4 @@
-import { type TPaginatedResponse } from 'Client/base/types/responses'
+import { type TGenericResponse, type TPaginatedResponse } from 'Client/base/types/responses'
 
 export interface IFormattedPostDto {
   id: string
@@ -17,3 +17,5 @@ export interface IFormattedPostDto {
 export type TGetPostsResponse = TPaginatedResponse<IFormattedPostDto>
 
 export type TGetReadMoreResponse = TPaginatedResponse<IFormattedPostDto>
+
+export type TGetPostResponse = TGenericResponse<IFormattedPostDto> 

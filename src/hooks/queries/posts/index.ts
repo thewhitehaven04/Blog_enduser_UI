@@ -1,8 +1,17 @@
-import { type UseQueryResult, useQuery } from '@tanstack/react-query'
+import {
+  type UseQueryResult,
+  useQuery,
+  useQueryClient
+} from '@tanstack/react-query'
 import type { ISuccessfulPaginatedResponse } from 'Client/base/types/responses'
 import { PostsClientInstance } from 'Client/posts'
 import { type IGetPostsRequestParamsDto } from 'Client/posts/types/requests'
-import { type IFormattedPostDto, type TGetPostsResponse } from 'Client/posts/types/responses'
+import {
+  type IFormattedPostDto,
+  type TGetPostsResponse
+} from 'Client/posts/types/responses'
+import { EToastType } from 'Hooks/context/toaster/types'
+import { useToasterEnqueue } from 'Hooks/toaster'
 
 export const PostsQueryKey = ({
   pagination
@@ -14,16 +23,35 @@ export function usePosts(
   pagination: IGetPostsRequestParamsDto,
   defaultIncrement: number
 ): UseQueryResult<ISuccessfulPaginatedResponse<IFormattedPostDto>, Error> {
+  const { toast } = useToasterEnqueue()
+  const queryClient = useQueryClient()
+
   return useQuery({
     queryFn: async () => {
-      const post = await (await PostsClientInstance.getPosts(pagination)).json() as TGetPostsResponse
+      try {
+        const postResponse = (await (
+          await PostsClientInstance.getPosts(pagination)
+        ).json()) as TGetPostsResponse
 
-      if (post.success) {
-        return post
+        if (postResponse.success) {
+          return postResponse
+        }
+      } catch (err) {
+        toast({
+          text: 'Unable to load post data. Please, try again later',
+          type: EToastType.ERROR
+        })
       }
-
-      throw new Error('Unable to load post data. Please, try again later')
     },
     queryKey: PostsQueryKey({ pagination }),
+    initialData: () =>
+      queryClient.getQueryData<ISuccessfulPaginatedResponse<IFormattedPostDto>>(
+        PostsQueryKey({
+          pagination: {
+            ...pagination,
+            count: pagination.count - defaultIncrement
+          }
+        })
+      )
   })
 }

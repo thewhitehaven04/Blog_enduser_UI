@@ -5,8 +5,10 @@ import {
   type ITransformedCommentDto,
   type TGetPostCommentsResponseDto
 } from 'Client/postComments/types/responses'
+import { EToastType } from 'Hooks/context/toaster/types'
 import { type IPaginationParams } from 'Hooks/pagination/types'
 import { type TUseCommentsResult } from 'Hooks/queries/comments/types'
+import { useToasterEnqueue } from 'Hooks/toaster'
 
 export const CommentsQueryKey = ({
   postId,
@@ -22,6 +24,7 @@ export function useComments(
   countIncrement: number
 ): TUseCommentsResult {
   const queryClient = useQueryClient()
+  const { toast } = useToasterEnqueue()
 
   return useQuery({
     queryFn: async () => {
@@ -33,7 +36,7 @@ export function useComments(
         return response
       }
 
-      throw new Error('Unable to retrieve comments for this post')
+      toast({ text: 'Unable to retrieve comment data', type: EToastType.ERROR })
     },
     queryKey: CommentsQueryKey({ postId, params }),
     initialData: () =>

@@ -1,15 +1,15 @@
 import styled from 'styled-components'
 
 export const ToastWrapper = styled.div`
-  position: fixed;
-  height: 50px;
-  width: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 8px;
 
-  padding: 8px;
-  background-color: black;
-  color: white;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: var(--gray-toaster);
+  color: black; 
 
-  bottom: 200px;
-  left: 50%;
-  transform: translateX(-50%);
-`
+  cursor: pointer;
+` 
