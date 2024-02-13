@@ -14,18 +14,27 @@ export const ToastWrapper = styled.div`
 
   cursor: pointer;
 
-  @keyframes slidein {
+  @keyframes slide {
     from {
       transform: translateY(100vh);
     }
 
+    12% {
+      transform: translateY(0);
+    }
+
+    88% {
+      transform: translateY(0);
+    }
+
     to {
-      transform: translateX(0);
+      transform: translateY(100vh);
     }
   }
 
-  animation-name: slidein;
-  animation-duration: 0.4s;
-  animation-timing-function: ease-out;
+  animation-name: slide;
+  animation-duration: 10s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 `
