@@ -11,6 +11,9 @@ import * as SC from './styles'
 import { useSignup } from 'Components/Modals/SignUp/SignupForm/hooks/mutateSignup'
 import { Button } from 'Components/Common/Button/styles'
 import { LinkLikeButton } from 'Components/Common/LinkLikeButton/styles'
+import { useToasterEnqueue } from 'Hooks/toasterEnqueue'
+import { EToastType } from 'Hooks/context/toaster/types'
+import { SIGNUP_SUCCESS_MSG } from './constants'
 
 export function SignUpForm({
   closeHandler,
@@ -22,10 +25,20 @@ export function SignUpForm({
     handleSubmit
   } = useForm<ISignUpForm>()
 
-  const { mutate } = useSignup()
+  const { mutate: signUp } = useSignup()
+
+  const { toast } = useToasterEnqueue()
 
   const submitHandler: SubmitHandler<ISignUpForm> = (data) => {
-    mutate(data)
+    signUp(data, {
+      onSuccess: () => {
+        toast({ type: EToastType.SUCCESS, text: SIGNUP_SUCCESS_MSG })
+        switchToLoginHandler()
+      },
+      onError: (err) => {
+        toast({ type: EToastType.ERROR, text: err.message })
+      }
+    })
   }
 
   return (

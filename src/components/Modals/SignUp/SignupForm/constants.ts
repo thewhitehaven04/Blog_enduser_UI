@@ -1,0 +1,1 @@
+export const SIGNUP_SUCCESS_MSG = 'You have successfully signed up! You may log in now.'

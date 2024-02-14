@@ -9,4 +9,6 @@ export const ToasterContainer = styled.div`
   align-items: center;
   gap: 8px;
   width: 100%;
+
+  z-index: 9999;
 `

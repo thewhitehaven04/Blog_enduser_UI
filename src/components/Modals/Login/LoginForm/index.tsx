@@ -13,23 +13,29 @@ import { useState } from 'react'
 import { ErrorText } from 'Components/Common/Styles/Error'
 import { LinkLikeButton } from 'Components/Common/LinkLikeButton/styles'
 import { RippleButton } from 'Components/Common/Button'
+import { useToasterEnqueue } from 'Hooks/toasterEnqueue'
+import { EToastType } from 'Hooks/context/toaster/types'
+import { LOGIN_SUCCESS_MSG } from './constants'
 
 export function LoginForm({
   closeHandler,
   switchToSignUpHandler
 }: ILoginFormProps): JSX.Element {
+  const { mutate } = useLogin()
+  const { toast } = useToasterEnqueue()
+  
   const {
     register,
     formState: { errors },
     handleSubmit
   } = useForm<ILoginForm>()
-
-  const { mutate } = useLogin()
-
   const [loginError, setLoginError] = useState<string | null>(null)
 
   const submitHandler: SubmitHandler<ILoginForm> = (data) => {
     mutate(data, {
+      onSuccess: () => {
+        toast({ type: EToastType.SUCCESS, text: LOGIN_SUCCESS_MSG })
+      },
       onError: (err) => {
         setLoginError(err.message)
       }

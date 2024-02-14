@@ -1,0 +1,1 @@
+export const LOGIN_SUCCESS_MSG = 'Congratulations, you have successfully logged in! You may leave comments to posts now.'

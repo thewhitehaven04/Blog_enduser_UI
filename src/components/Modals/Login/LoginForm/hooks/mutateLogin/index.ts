@@ -11,6 +11,7 @@ import { useSetUserContext } from 'Components/Modals/Login/LoginForm/hooks/conte
 import { type TUseLoginResult } from 'Components/Modals/Login/LoginForm/hooks/mutateLogin/types'
 import { storeAccessToken } from 'Service/accessToken'
 import { jwtDecode } from 'jwt-decode'
+import { LOGIN_ERROR_MSG } from './constants'
 
 export function useLogin(): TUseLoginResult {
   const setUser = useSetUserContext()
@@ -27,9 +28,7 @@ export function useLogin(): TUseLoginResult {
         return response
       }
 
-      throw new Error(
-        'Your credentials are incorrect. Please, check your login and password and try again.'
-      )
+      throw new Error(LOGIN_ERROR_MSG)
     },
     mutationKey: ['login'],
     onSuccess: ({ data }) => {
