@@ -40,7 +40,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   p {
-    margin-top: 0px;
+    margin-block: 0px;
   }
 
   body {

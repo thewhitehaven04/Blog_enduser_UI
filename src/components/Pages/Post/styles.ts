@@ -10,12 +10,13 @@ export const PostPageColumnWrapper = styled.div`
 `
 
 export const PostPageWrapper = styled.div`
-  width: 100%;
-  height: 100%;
   display: flex;
+  flex-grow: 1;
   flex-flow: column;
   align-items: center;
   justify-content: stretch;
-
-  flex-grow: 1;
+  
+  margin-top: 16px;
+  width: 100%;
+  height: 100%;
 `
