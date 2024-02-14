@@ -5,4 +5,5 @@ export interface IModalProps {
   subtitle?: string
   handleClose?: () => void
   children: ReactNode 
+  containerWidthPx?: number
 }

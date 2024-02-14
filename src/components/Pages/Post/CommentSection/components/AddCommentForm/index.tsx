@@ -16,6 +16,7 @@ import { ErrorText } from 'Components/Common/Styles/Error'
 import { useToasterEnqueue } from 'Hooks/toasterEnqueue'
 import { EToastType } from 'Hooks/context/toaster/types'
 import { SUBMIT_HANDLER_ERROR_MESSAGE } from 'Pages/Post/CommentSection/components/AddCommentForm/constants'
+import { InlineLink } from 'Components/Common/Styles/InlineLink/styles'
 
 export function AddCommentSubsection({
   postId
@@ -73,7 +74,9 @@ export function AddCommentSubsection({
           </SC.SubsectionWrapper>
         </form>
       ) : (
-        <span>Please, sign in to leave comments</span>
+        <span>
+          Please, sign in to leave comments
+        </span>
       )}
     </>
   )

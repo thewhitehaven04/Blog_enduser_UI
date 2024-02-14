@@ -1,18 +1,19 @@
 import { type IModalProps } from 'Components/Common/Modal/types'
 import * as SC from './styles'
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
 export function Modal({
   title,
   subtitle,
+  handleClose,
+  containerWidthPx,
   children,
-  handleClose
 }: IModalProps): JSX.Element {
   return (
     <SC.Overlay>
-      <SC.Wrapper>
+      <SC.Wrapper width={containerWidthPx}>
         <SC.HeaderGrid>
-          <SC.CloseButton icon={faCircleXmark} onClick={handleClose} />
+          <SC.ModalCloseButton icon={faXmark} onClick={handleClose} size='lg'/>
           <SC.Title>{title}</SC.Title>
           {subtitle != null && <SC.Subtitle>{subtitle}</SC.Subtitle>}
         </SC.HeaderGrid>

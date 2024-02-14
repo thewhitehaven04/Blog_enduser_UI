@@ -8,20 +8,22 @@ export const Overlay = styled.div`
   height: 100dvh;
 
   z-index: 1;
-  backdrop-filter: brightness(0.65);
+  backdrop-filter: brightness(0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ width?: number }>`
   padding: 24px;
-  
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 
   z-index: 2;
   background-color: white;
   border-radius: 8px;
+  box-shadow: 0px 1px 8px 0.2px var(--gray-shadow);
+
+  width: ${(props) => (props.width != null ? props.width + 'px' : 'auto')};
 `
 
 export const HeaderGrid = styled.div`
@@ -45,13 +47,15 @@ export const Subtitle = styled.div`
   font-size: 12pt;
 `
 
-export const CloseButton = styled(FontAwesomeIcon)`
+export const ModalCloseButton = styled(FontAwesomeIcon)`
   grid-area: close;
   place-self: center;
 
+  color: var(--gray);
+
   &:hover {
-    color: white;
-    background-color: black;
+    color: black;
+    cursor: pointer;
   }
 `
 

@@ -11,7 +11,7 @@ export function UserInformation({
   return (
     <SC.Wrapper>
       <SC.UserIconWrapper>
-        <FontAwesomeIcon size='lg' icon={faUser} />
+        <FontAwesomeIcon size='lg' icon={faUser} cursor='pointer'/> 
       </SC.UserIconWrapper>
       <Column $alignment='start'>
         <span>{email}</span>

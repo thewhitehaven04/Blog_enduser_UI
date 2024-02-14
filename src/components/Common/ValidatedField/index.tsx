@@ -1,7 +1,7 @@
 import { Column } from 'Components/Common/Styles/Column'
 import { Row } from 'Components/Common/Styles/Row'
-import { Label, ValidationMessage } from 'Components/Common/ValidatedField/styles'
 import { type IValidatedFieldProps } from 'Components/Common/ValidatedField/types'
+import * as SC from './styles'
 
 export const ValidatedField = ({
   label,
@@ -9,17 +9,17 @@ export const ValidatedField = ({
   errorMessage,
   required,
   children,
-  vertical = false,
+  vertical = false
 }: IValidatedFieldProps): JSX.Element => {
   if (vertical) {
     return (
       <Column>
         <Row $justify='between'>
-          <Label htmlFor={labelFor} $required={required}>
+          <SC.Label htmlFor={labelFor} $required={required}>
             {label}
-          </Label>
+          </SC.Label>
           {errorMessage != null && (
-            <ValidationMessage>{errorMessage}</ValidationMessage>
+            <SC.ValidationMessage>{errorMessage}</SC.ValidationMessage>
           )}
         </Row>
         {children}
@@ -29,13 +29,13 @@ export const ValidatedField = ({
   return (
     <Column $justify='start'>
       <Row>
-        <Label htmlFor={labelFor} $required={required}>
+        <SC.Label htmlFor={labelFor} $required={required}>
           {label}
-        </Label>
+        </SC.Label>
         {children}
       </Row>
       {errorMessage != null && (
-        <ValidationMessage>{errorMessage}</ValidationMessage>
+        <SC.ValidationMessage>{errorMessage}</SC.ValidationMessage>
       )}
     </Column>
   )

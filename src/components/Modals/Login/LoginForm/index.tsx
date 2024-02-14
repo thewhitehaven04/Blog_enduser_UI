@@ -9,7 +9,10 @@ import { Input } from 'Components/Common/Input/styles'
 import { useLogin } from 'Components/Modals/Login/LoginForm/hooks/mutateLogin'
 import { Row } from 'Components/Common/Styles/Row'
 import { Modal } from 'Components/Common/Modal'
-import { Button } from 'Components/Common/Button/styles'
+import { useState } from 'react'
+import { ErrorText } from 'Components/Common/Styles/Error'
+import { LinkLikeButton } from 'Components/Common/LinkLikeButton/styles'
+import { RippleButton } from 'Components/Common/Button'
 
 export function LoginForm({
   closeHandler,
@@ -23,8 +26,14 @@ export function LoginForm({
 
   const { mutate } = useLogin()
 
+  const [loginError, setLoginError] = useState<string | null>(null)
+
   const submitHandler: SubmitHandler<ILoginForm> = (data) => {
-    mutate(data)
+    mutate(data, {
+      onError: (err) => {
+        setLoginError(err.message)
+      }
+    })
   }
 
   return (
@@ -32,6 +41,7 @@ export function LoginForm({
       handleClose={closeHandler}
       title='Login'
       subtitle="Let's log you in."
+      containerWidthPx={300}
     >
       <form onSubmit={handleSubmit(submitHandler)}>
         <SC.FormContent>
@@ -56,14 +66,17 @@ export function LoginForm({
             </ValidatedField>
           </SC.FormFields>
           <Row $justify='center'>
-            <Button type='submit' onClick={handleSubmit(submitHandler)}>
+            <RippleButton type='submit' onClick={handleSubmit(submitHandler)}>
               Login
-            </Button>
+            </RippleButton>
           </Row>
-          <span>Here for the first time?</span>
-          <Button type='button' onClick={switchToSignUpHandler}>
-            Sign up
-          </Button>
+          <span>
+            Here for the first time?{' '}
+            <LinkLikeButton onClick={switchToSignUpHandler}>
+              Sign up
+            </LinkLikeButton>
+          </span>
+          {loginError != null && <ErrorText>{loginError}</ErrorText>}
         </SC.FormContent>
       </form>
     </Modal>

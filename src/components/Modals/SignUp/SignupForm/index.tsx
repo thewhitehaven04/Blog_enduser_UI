@@ -10,6 +10,7 @@ import { Input } from 'Components/Common/Input/styles'
 import * as SC from './styles'
 import { useSignup } from 'Components/Modals/SignUp/SignupForm/hooks/mutateSignup'
 import { Button } from 'Components/Common/Button/styles'
+import { LinkLikeButton } from 'Components/Common/LinkLikeButton/styles'
 
 export function SignUpForm({
   closeHandler,
@@ -30,8 +31,9 @@ export function SignUpForm({
   return (
     <Modal
       title='Sign up'
-      subtitle="Let's set up an acoount for you."
+      subtitle="Let's set up an account for you."
       handleClose={closeHandler}
+      containerWidthPx={300}
     >
       <form onSubmit={handleSubmit(submitHandler)}>
         <SC.FormContent>
@@ -66,13 +68,15 @@ export function SignUpForm({
           </SC.FormFields>
           <Row $justify='center'>
             <Button type='submit' onClick={handleSubmit(submitHandler)}>
-              Sign up 
+              Sign up
             </Button>
           </Row>
-          <span>Already have an account?</span>
-          <Button type='button' onClick={switchToLoginHandler}>
-            Login
-          </Button>
+          <span>
+            Already have an account?{' '}
+            <LinkLikeButton onClick={switchToLoginHandler}>
+              Log in
+            </LinkLikeButton>
+          </span>
         </SC.FormContent>
       </form>
     </Modal>

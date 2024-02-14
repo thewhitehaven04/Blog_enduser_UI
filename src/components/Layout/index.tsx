@@ -7,7 +7,7 @@ import { LoginForm } from 'Components/Modals/Login/LoginForm'
 import { EModalShown } from 'Components/Layout/types'
 import { SignUpForm } from 'Components/Modals/SignUp/SignupForm'
 import { UserInformation } from 'Components/Layout/components/UserInformation'
-import { Button } from 'Components/Common/Button/styles'
+import { RippleButton } from 'Components/Common/Button'
 
 export function AppLayout(): JSX.Element {
   const [showModalType, setShowModalType] = useState<EModalShown>(
@@ -51,12 +51,12 @@ export function AppLayout(): JSX.Element {
             <UserInformation {...user} />
           ) : (
             <SC.ButtonWrapper>
-              <Button type='button' onClick={handleShowLoginModal}>
+              <RippleButton type='button' onClick={handleShowLoginModal}>
                 Login
-              </Button>
-              <Button type='button' onClick={handleShowSignUpModal}>
+              </RippleButton>
+              <RippleButton type='button' onClick={handleShowSignUpModal}>
                 Sign up
-              </Button>
+              </RippleButton>
             </SC.ButtonWrapper>
           )}
         </Row>

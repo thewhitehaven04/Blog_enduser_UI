@@ -8,4 +8,5 @@ export const LinkLikeButton = styled.button`
   background-color: rgba(0, 0, 0, 0);
   border: none;
   padding: 0px;
+  font-size: inherit;
 `
