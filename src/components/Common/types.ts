@@ -8,7 +8,13 @@ export type TContainerJustify =
   | 'end'
   | 'center'
 
+export type TContainerGap = 'xs' | 's' | 'm' | 'l'
+
+export type TContainerPadding = 'xs' | 's' | 'm' | 'l'
+
 export interface IContainerProps {
   $alignment?: TContainerAlignment
   $justify?: TContainerJustify
+  $gap?: TContainerGap 
+  $pad?: TContainerPadding
 }

@@ -6,7 +6,7 @@ export const FormContent = styled.div`
   padding: 8px;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 12px;
 `
 
@@ -15,7 +15,6 @@ export const FormErrors = styled.div`
 `
 
 export const FormFields = styled(Column)`
-  gap: 8px;
   display: flex;
   flex-direction: column;
   gap: 16px;

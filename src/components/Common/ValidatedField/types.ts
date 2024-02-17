@@ -8,7 +8,7 @@ export interface IValidatedFieldProps extends PropsWithChildren {
   labelFor: string
   vertical?: boolean
   required: boolean
-  errorMessage: string | null
+  errorMessage?: string | null
 }
 
 export interface ILabelProps extends ComponentProps<'label'> {

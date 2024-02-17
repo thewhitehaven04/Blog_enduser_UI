@@ -1,6 +1,7 @@
 export interface ISignUpForm {
   username: string
   password: string
+  confirm: string
   email: string
 }
 

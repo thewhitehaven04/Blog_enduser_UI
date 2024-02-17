@@ -17,7 +17,7 @@ export function Modal({
           <SC.Title>{title}</SC.Title>
           {subtitle != null && <SC.Subtitle>{subtitle}</SC.Subtitle>}
         </SC.HeaderGrid>
-        <SC.Content>{children}</SC.Content>
+        <SC.Content $alignment='center'>{children}</SC.Content>
       </SC.Wrapper>
     </SC.Overlay>
   )

@@ -16,7 +16,6 @@ export const FormErrors = styled.div`
 `
 
 export const FormFields = styled(Column)`
-  gap: 8px;
   display: flex;
   flex-direction: column;
   gap: 16px;
