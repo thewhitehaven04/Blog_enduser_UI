@@ -9,7 +9,6 @@ export const SectionWrapper = styled.section`
 
   background-color: var(--gray-background);
   width: 100%;
-  height: 100%;
   padding-block: 16px;
 `
 

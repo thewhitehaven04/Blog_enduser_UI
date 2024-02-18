@@ -5,4 +5,5 @@ export const ValidationInfoWrapper = styled(Column)<{ isValid: boolean }>`
   border: 1px solid ${(props) => (props.isValid ? 'green' : 'red')};
   border-radius: 8px;
   font-size: 11pt;
+  height: min-content;
 `

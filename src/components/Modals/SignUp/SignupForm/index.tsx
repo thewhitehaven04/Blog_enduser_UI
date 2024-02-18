@@ -77,7 +77,7 @@ export function SignUpForm({
               required
               vertical
             >
-              <Input type='password' {...register('password')} width='200px'/>
+              <Input type='password' {...register('password')} width='200px' />
             </ValidatedField>
             <ValidatedField
               label='Confirm password'
@@ -85,12 +85,12 @@ export function SignUpForm({
               required
               vertical
             >
-              <Input type='confirm' {...register('confirm')} width='200px'/>
+              <Input type='password' {...register('confirm')} width='200px' />
             </ValidatedField>
           </Column>
           <ValidationInfo fields={validationData} />
         </SC.FormContent>
-        <Column $alignment='center'>
+        <Column $alignment='center' $spacing='s'>
           <Button type='submit' onClick={handleSubmit(submitHandler)}>
             Sign up
           </Button>

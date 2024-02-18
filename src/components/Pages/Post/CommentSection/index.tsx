@@ -31,7 +31,7 @@ export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
   }
 
   return (
-    <SC.Wrapper $spacing='s'>
+    <SC.CommentSectionWrapper $spacing='s'>
       <SC.SectionHeader>Join the discussion:</SC.SectionHeader>
       <span>
         {typeof commentCount === 'number' &&
@@ -52,6 +52,6 @@ export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
           )}
         </Column>
       )}
-    </SC.Wrapper>
+    </SC.CommentSectionWrapper>
   )
 }

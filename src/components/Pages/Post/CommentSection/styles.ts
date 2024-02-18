@@ -6,7 +6,7 @@ export const SectionHeader = styled.h1`
   margin: 0;
 `
 
-export const Wrapper = styled(Column)`
+export const CommentSectionWrapper = styled(Column)`
   padding-top: 4px;
   padding-bottom: 16px;
 `

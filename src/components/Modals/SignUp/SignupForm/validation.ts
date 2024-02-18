@@ -11,7 +11,7 @@ export const SignUpFormSchema: ObjectSchema<ISignUpForm> = object({
       'Has digits, lower- and uppercase characters',
       (value) => {
         const hasNonWordCharacters = Boolean(value.match(/\W/))
-        return hasNonWordCharacters
+        return !hasNonWordCharacters
       }
     ),
   email: string().required().email(),

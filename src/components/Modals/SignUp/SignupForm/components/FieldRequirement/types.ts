@@ -1,4 +1,4 @@
 export interface IFieldValidityProps {
-  isValid: boolean
+  isValid: boolean | null
   text: string
 }
