@@ -26,12 +26,6 @@ export const TopbarWrapper = styled(Row)`
   box-shadow: 0px 1px 2px 0.1px var(--gray-shadow);
 `
 
-export const ButtonWrapper = styled.div`
-  display: flex;
-  flex-flow: row;
-  gap: 8px;
-`
-
 export const HeaderLink = styled(Link)`
   color: black;
   font-weight: normal;

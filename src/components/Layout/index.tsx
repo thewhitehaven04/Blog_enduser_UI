@@ -1,13 +1,18 @@
 import { Outlet } from 'react-router'
 import * as SC from './styles'
 import { Row } from 'Components/Common/Styles/Flex/Row'
-import { useUserContext } from './components/UserContextProvider/hooks/contextUser'
+import {
+  useUserContext,
+  useUserSetContext
+} from './components/UserContextProvider/hooks/contextUser'
 import { useState } from 'react'
 import { LoginForm } from 'Components/Modals/Login/LoginForm'
 import { EModalShown } from 'Components/Layout/types'
 import { SignUpForm } from 'Components/Modals/SignUp/SignupForm'
 import { UserInformation } from 'Components/Layout/components/UserInformation'
 import { RippleButton } from 'Components/Common/Button'
+import { LinkLikeButton } from 'Components/Common/LinkLikeButton/styles'
+import { clearAccessToken } from 'Service/accessToken'
 
 export function AppLayout(): JSX.Element {
   const [showModalType, setShowModalType] = useState<EModalShown>(
@@ -15,6 +20,7 @@ export function AppLayout(): JSX.Element {
   )
 
   const user = useUserContext()
+  const setUser = useUserSetContext()
 
   const handleShowLoginModal = (): void => {
     setShowModalType(EModalShown.LOGIN)
@@ -26,6 +32,11 @@ export function AppLayout(): JSX.Element {
 
   const handleClose = (): void => {
     setShowModalType(EModalShown.OFF)
+  }
+
+  const handleLogout = (): void => {
+    clearAccessToken()
+    setUser(null)
   }
 
   return (
@@ -48,16 +59,19 @@ export function AppLayout(): JSX.Element {
         </Row>
         <Row $justify='end'>
           {user != null ? (
-            <UserInformation {...user} />
+            <Row $spacing='l'>
+              <UserInformation {...user} />
+              <RippleButton onClick={handleLogout}>Logout</RippleButton>
+            </Row>
           ) : (
-            <SC.ButtonWrapper>
+            <Row $spacing='s'>
               <RippleButton type='button' onClick={handleShowLoginModal}>
                 Login
               </RippleButton>
               <RippleButton type='button' onClick={handleShowSignUpModal}>
                 Sign up
               </RippleButton>
-            </SC.ButtonWrapper>
+            </Row>
           )}
         </Row>
       </SC.TopbarWrapper>

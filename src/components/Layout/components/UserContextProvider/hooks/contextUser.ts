@@ -7,7 +7,12 @@ export function useUserContext(): IUserContext | null {
   return useContext(UserContext)
 }
 
-export function useUserSetContext(): Dispatch<IUserContext> | undefined {
-  return useContext(UserSetContext)
-}
+export function useUserSetContext(): Dispatch<IUserContext | null> {
+  const userSetContext = useContext(UserSetContext)
 
+  if (userSetContext != null) {
+    return userSetContext
+  }
+
+  throw new Error('UserSet context must be used within UserSetContext provider')
+}

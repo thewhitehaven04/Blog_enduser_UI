@@ -4,6 +4,6 @@ import { createContext, type Dispatch } from 'react'
 
 export const UserContext = createContext<IUserContext | null>(null)
 
-export const UserSetContext = createContext<Dispatch<IUserContext> | undefined>(
+export const UserSetContext = createContext<Dispatch<IUserContext | null> | undefined>(
   undefined
 )
