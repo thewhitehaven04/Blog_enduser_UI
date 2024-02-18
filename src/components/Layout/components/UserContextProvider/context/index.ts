@@ -1,9 +1,11 @@
-import type { IUserContext } from 'Components/Layout/components/UserContextProvider/context/types'
-import { createContext, type Dispatch } from 'react'
-
+import type {
+  IUserContext,
+  IUserDispatchContext
+} from 'Components/Layout/components/UserContextProvider/context/types'
+import { createContext } from 'react'
 
 export const UserContext = createContext<IUserContext | null>(null)
 
-export const UserSetContext = createContext<Dispatch<IUserContext | null> | undefined>(
+export const UserDispatchContext = createContext<IUserDispatchContext | undefined>(
   undefined
 )

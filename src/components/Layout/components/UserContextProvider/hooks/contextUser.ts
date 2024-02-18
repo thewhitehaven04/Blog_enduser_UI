@@ -1,17 +1,20 @@
 import { UserContext } from 'Components/Layout/components/UserContextProvider/context'
-import type { IUserContext } from 'Components/Layout/components/UserContextProvider/context/types'
-import { useContext, type Dispatch } from 'react'
-import { UserSetContext } from '../context'
+import type {
+  IUserContext,
+  IUserDispatchContext
+} from 'Components/Layout/components/UserContextProvider/context/types'
+import { useContext } from 'react'
+import { UserDispatchContext } from '../context'
 
 export function useUserContext(): IUserContext | null {
   return useContext(UserContext)
 }
 
-export function useUserSetContext(): Dispatch<IUserContext | null> {
-  const userSetContext = useContext(UserSetContext)
+export function useUserDispatchContext(): IUserDispatchContext {
+  const userDispatchContext = useContext(UserDispatchContext)
 
-  if (userSetContext != null) {
-    return userSetContext
+  if (userDispatchContext != null) {
+    return userDispatchContext
   }
 
   throw new Error('UserSet context must be used within UserSetContext provider')

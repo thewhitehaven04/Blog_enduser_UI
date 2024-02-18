@@ -6,15 +6,13 @@ import type {
   ISuccessfulResponse,
   TGenericResponse
 } from 'Client/base/types/responses'
-import { type IUserContext } from 'Components/Layout/components/UserContextProvider/context/types'
-import { useSetUserContext } from 'Components/Modals/Login/LoginForm/hooks/contextSetUser'
 import { type TUseLoginResult } from 'Components/Modals/Login/LoginForm/hooks/mutateLogin/types'
-import { storeAccessToken } from 'Service/accessToken'
-import { jwtDecode } from 'jwt-decode'
 import { LOGIN_ERROR_MSG } from './constants'
+import { useUserDispatchContext } from 'Components/Layout/components/UserContextProvider/hooks/contextUser'
 
 export function useLogin(): TUseLoginResult {
-  const setUser = useSetUserContext()
+  const { handleLogin } = useUserDispatchContext()
+
   return useMutation<
     ISuccessfulResponse<IAuthResponseDto>,
     Error,
@@ -32,8 +30,7 @@ export function useLogin(): TUseLoginResult {
     },
     mutationKey: ['login'],
     onSuccess: ({ data }) => {
-      storeAccessToken(data.token)
-      setUser(jwtDecode<IUserContext>(data.token))
+      handleLogin(data.token)
     }
   })
 }
