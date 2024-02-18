@@ -31,16 +31,16 @@ export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {
   }
 
   return (
-    <SC.Wrapper>
+    <SC.Wrapper $spacing='s'>
       <SC.SectionHeader>Join the discussion:</SC.SectionHeader>
       <span>
         {typeof commentCount === 'number' &&
           getCommentCountString(commentCount)}
       </span>
       <AddCommentSubsection postId={postId} />
-      <SC.CommentListWrapper>
+      <Column $spacing='m'>
         <LoadedCommentList {...query} />
-      </SC.CommentListWrapper>
+      </Column>
       {hasNextButton && (
         <Column $alignment='start'>
           {isRefetching ? (
