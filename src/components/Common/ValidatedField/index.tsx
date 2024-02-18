@@ -1,5 +1,5 @@
-import { Column } from 'Components/Common/Styles/Column'
-import { Row } from 'Components/Common/Styles/Row'
+import { Column } from 'Components/Common/Styles/Flex/Column'
+import { Row } from 'Components/Common/Styles/Flex/Row'
 import { type IValidatedFieldProps } from 'Components/Common/ValidatedField/types'
 import * as SC from './styles'
 
@@ -13,7 +13,7 @@ export const ValidatedField = ({
 }: IValidatedFieldProps): JSX.Element => {
   if (vertical) {
     return (
-      <Column>
+      <Column $spacing='xs'>
         <Row $justify='between'>
           <SC.Label htmlFor={labelFor} $required={required}>
             {label}

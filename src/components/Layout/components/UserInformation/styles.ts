@@ -9,12 +9,3 @@ export const UserIconWrapper = styled.div`
   background-color: #5551;
   padding: 8px;
 `
-
-export const Wrapper = styled.div`
-  display: flex;
-  flex-flow: row;
-  gap: 8px;
-
-  align-items: center;
-  padding-right: 8px;
-`

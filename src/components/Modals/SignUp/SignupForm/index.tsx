@@ -2,9 +2,8 @@ import {
   type ISignUpFormProps,
   type ISignUpForm
 } from 'Components/Modals/SignUp/SignupForm/types'
-import { type SubmitHandler, useForm, useController } from 'react-hook-form'
+import { type SubmitHandler, useForm } from 'react-hook-form'
 import { Modal } from 'Components/Common/Modal'
-import { Row } from 'Components/Common/Styles/Row'
 import { ValidatedField } from 'Components/Common/ValidatedField'
 import { Input } from 'Components/Common/Input/styles'
 import * as SC from './styles'
@@ -18,6 +17,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { SignUpFormSchema, SignUpSchemaRequirements } from './validation'
 import { mapFormStateToValidationInfo } from './helpers/mapFormStateToValidationInfo'
 import { ValidationInfo } from './components/ValidationInfo'
+import { Column } from 'Components/Common/Styles/Flex/Column'
 
 export function SignUpForm({
   closeHandler,
@@ -58,15 +58,15 @@ export function SignUpForm({
       containerWidthPx={600}
     >
       <form onSubmit={handleSubmit(submitHandler)}>
-        <SC.FormContent>
-          <SC.FormFields>
+        <SC.FormContent $pad='s' $spacing='l'>
+          <Column $spacing='m'>
             <ValidatedField
               label='Username'
               labelFor='username'
               required
               vertical
             >
-              <Input type='text' {...register('username')} />
+              <Input type='text' {...register('username')} width='200px' />
             </ValidatedField>
             <ValidatedField label='Email' labelFor='email' required vertical>
               <Input type='email' {...register('email')} />
@@ -77,7 +77,7 @@ export function SignUpForm({
               required
               vertical
             >
-              <Input type='password' {...register('password')} />
+              <Input type='password' {...register('password')} width='200px'/>
             </ValidatedField>
             <ValidatedField
               label='Confirm password'
@@ -85,20 +85,22 @@ export function SignUpForm({
               required
               vertical
             >
-              <Input type='confirm' {...register('confirm')} />
+              <Input type='confirm' {...register('confirm')} width='200px'/>
             </ValidatedField>
-            <Row $justify='center'>
-              <Button type='submit' onClick={handleSubmit(submitHandler)}>
-                Sign up
-              </Button>
-            </Row>
-          </SC.FormFields>
+          </Column>
           <ValidationInfo fields={validationData} />
         </SC.FormContent>
-        <span>
-          Already have an account?{' '}
-          <LinkLikeButton onClick={switchToLoginHandler}>Log in</LinkLikeButton>
-        </span>
+        <Column $alignment='center'>
+          <Button type='submit' onClick={handleSubmit(submitHandler)}>
+            Sign up
+          </Button>
+          <span>
+            Already have an account?{' '}
+            <LinkLikeButton onClick={switchToLoginHandler}>
+              Log in
+            </LinkLikeButton>
+          </span>
+        </Column>
       </form>
     </Modal>
   )

@@ -1,4 +1,4 @@
-import { Column } from 'Components/Common/Styles/Column'
+import { Column } from 'Components/Common/Styles/Flex/Column'
 import styled from 'styled-components'
 
 export const SubsectionWrapper = styled(Column)`

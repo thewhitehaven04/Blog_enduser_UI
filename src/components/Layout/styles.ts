@@ -1,4 +1,4 @@
-import { Row } from 'Components/Common/Styles/Row'
+import { Row } from 'Components/Common/Styles/Flex/Row'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 
@@ -21,9 +21,6 @@ export const TopbarWrapper = styled(Row)`
   background-color: var(--gray-background);
   backdrop-filter: blur(8px);
   z-index: 999;
-
-  padding-block: 8px;
-  padding-inline: 24px;
 
   border-bottom: 1px solid var(--gray-border);
   box-shadow: 0px 1px 2px 0.1px var(--gray-shadow);

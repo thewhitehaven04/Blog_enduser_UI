@@ -1,4 +1,4 @@
-import { Row } from 'Components/Common/Styles/Row'
+import { Row } from 'Components/Common/Styles/Flex/Row'
 import { toRelativeDate } from 'Pages/Post/CommentSection/components/Comment/helpers'
 import {
   type ICommentEditForm,

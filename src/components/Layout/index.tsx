@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router'
 import * as SC from './styles'
-import { Row } from 'Components/Common/Styles/Row'
+import { Row } from 'Components/Common/Styles/Flex/Row'
 import { useUserContext } from './components/UserContextProvider/hooks/contextUser'
 import { useState } from 'react'
 import { LoginForm } from 'Components/Modals/Login/LoginForm'
@@ -42,7 +42,7 @@ export function AppLayout(): JSX.Element {
           switchToLoginHandler={handleShowLoginModal}
         />
       )}
-      <SC.TopbarWrapper $alignment='center' $justify='between'>
+      <SC.TopbarWrapper $alignment='center' $justify='between' $pad='xs'>
         <Row $justify='start'>
           <SC.HeaderLink to='/posts'>All posts</SC.HeaderLink>
         </Row>

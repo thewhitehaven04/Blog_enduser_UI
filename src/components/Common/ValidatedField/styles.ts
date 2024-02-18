@@ -6,8 +6,6 @@ export const ValidationMessage = styled.span`
 `
 
 export const Label = styled('label')<ILabelProps>`
-  margin-bottom: 4px;
-
   ${(props) => {
     if (props.$required) {
       return `

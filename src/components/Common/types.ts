@@ -1,4 +1,4 @@
-export type TContainerAlignment = 'center' | 'stretch' | 'start' | 'end'
+export type TContainerAlignment = 'center' | 'stretch' | 'start' | 'end' | 'baseline'
 
 export type TContainerJustify =
   | 'spread'
@@ -8,13 +8,14 @@ export type TContainerJustify =
   | 'end'
   | 'center'
 
-export type TContainerGap = 'xs' | 's' | 'm' | 'l'
+export type TContainerSpacing = 'xs' | 's' | 'm' | 'l'
 
 export type TContainerPadding = 'xs' | 's' | 'm' | 'l'
 
 export interface IContainerProps {
   $alignment?: TContainerAlignment
   $justify?: TContainerJustify
-  $gap?: TContainerGap 
+  $spacing?: TContainerSpacing 
   $pad?: TContainerPadding
+  $wrap?: boolean
 }

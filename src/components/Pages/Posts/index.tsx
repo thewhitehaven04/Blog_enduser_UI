@@ -1,5 +1,5 @@
 import { RippleButton } from 'Components/Common/Button'
-import { Column } from 'Components/Common/Styles/Column'
+import { Column } from 'Components/Common/Styles/Flex/Column'
 import { MainPane } from 'Components/Common/Styles/MainPane'
 import { usePagination } from 'Hooks/pagination'
 import { usePosts } from 'Pages/Posts/hooks/queryPosts'

@@ -6,7 +6,7 @@ import { useComments } from 'Pages/Post/CommentSection/hooks/queryComments'
 import * as SC from './styles'
 import { AddCommentSubsection } from 'Pages/Post/CommentSection/components/AddCommentForm'
 import { LinkLikeButton } from 'Components/Common/LinkLikeButton/styles'
-import { Column } from 'Components/Common/Styles/Column'
+import { Column } from 'Components/Common/Styles/Flex/Column'
 import { getCommentCountString } from 'Pages/Post/CommentSection/utils'
 
 export function CommentSection({ postId }: ICommentSectionProps): JSX.Element {

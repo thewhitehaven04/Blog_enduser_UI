@@ -29,8 +29,8 @@ export const SignUpFormSchema: ObjectSchema<ISignUpForm> = object({
 
 export const SignUpSchemaRequirements: Record<keyof ISignUpForm, string> = {
   username:
-    'Username must be between 2 and 32 characters long and contain only alphanumeric characters (lower- and uppercase letters and numbers)',
-  email: 'Must be a valid email',
-  password: 'Must be at least 8 characters long',
-  confirm: 'Password and confirmation must match'
+    'Username is between 2 and 32 characters long and contains only characters (a-z, A-Z, 0-9)',
+  email: 'Valid email',
+  password: 'Password is at least 8 characters long',
+  confirm: 'Password and confirmation match'
 }

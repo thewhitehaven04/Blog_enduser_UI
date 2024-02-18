@@ -7,7 +7,7 @@ import {
 } from 'Components/Modals/Login/LoginForm/types'
 import { Input } from 'Components/Common/Input/styles'
 import { useLogin } from 'Components/Modals/Login/LoginForm/hooks/mutateLogin'
-import { Row } from 'Components/Common/Styles/Row'
+import { Row } from 'Components/Common/Styles/Flex/Row'
 import { Modal } from 'Components/Common/Modal'
 import { useState } from 'react'
 import { ErrorText } from 'Components/Common/Styles/Error'
@@ -16,6 +16,7 @@ import { RippleButton } from 'Components/Common/Button'
 import { useToasterEnqueue } from 'Hooks/toasterEnqueue'
 import { EToastType } from 'Hooks/context/toaster/types'
 import { LOGIN_SUCCESS_MSG } from './constants'
+import { Column } from 'Components/Common/Styles/Flex/Column'
 
 export function LoginForm({
   closeHandler,
@@ -23,7 +24,7 @@ export function LoginForm({
 }: ILoginFormProps): JSX.Element {
   const { mutate } = useLogin()
   const { toast } = useToasterEnqueue()
-  
+
   const {
     register,
     formState: { errors },
@@ -50,8 +51,8 @@ export function LoginForm({
       containerWidthPx={300}
     >
       <form onSubmit={handleSubmit(submitHandler)}>
-        <SC.FormContent>
-          <SC.FormFields>
+        <SC.FormContent $pad='s' $spacing='m'>
+          <Column $spacing='m'>
             <ValidatedField
               label='Username'
               labelFor='username'
@@ -70,7 +71,7 @@ export function LoginForm({
             >
               <Input type='password' {...register('password')} />
             </ValidatedField>
-          </SC.FormFields>
+          </Column>
           <Row $justify='center'>
             <RippleButton type='submit' onClick={handleSubmit(submitHandler)}>
               Login

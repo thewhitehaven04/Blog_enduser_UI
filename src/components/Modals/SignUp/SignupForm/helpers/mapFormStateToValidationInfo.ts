@@ -1,5 +1,5 @@
 import type { FieldValues, FormState } from 'react-hook-form'
-import type { IFieldValidityProps } from '../components/FieldValidity/types'
+import type { IFieldValidityProps } from '../components/FieldRequirement/types'
 
 export function mapFormStateToValidationInfo<T extends FieldValues>(
   formState: FormState<T>,

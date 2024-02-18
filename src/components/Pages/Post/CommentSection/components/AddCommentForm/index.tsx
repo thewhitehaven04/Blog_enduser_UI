@@ -6,7 +6,7 @@ import {
 } from 'Pages/Post/CommentSection/components/AddCommentForm/types'
 import { useSubmitComment } from 'Pages/Post/CommentSection/components/AddCommentForm/hooks/mutationSubmitComment'
 import { useUserContext } from 'Components/Layout/components/UserContextProvider/hooks/contextUser'
-import { Row } from 'Components/Common/Styles/Row'
+import { Row } from 'Components/Common/Styles/Flex/Row'
 import { AddCommentSchema } from 'Pages/Post/CommentSection/components/AddCommentForm/validation'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
