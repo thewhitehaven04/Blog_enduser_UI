@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 import '@fontsource-variable/outfit'
-import '@fontsource-variable/lora'
+import '@fontsource/charis-sil'
 
 
 export const GlobalStyles = createGlobalStyle`
@@ -8,7 +8,7 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
 
     // font definitions
-    --font-serif: "Lora Variable";
+    --font-serif: "Charis SIL";
     --font-sans-serif: "Outfit Variable";
 
     // color defintions

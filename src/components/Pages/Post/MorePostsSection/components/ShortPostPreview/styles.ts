@@ -18,12 +18,13 @@ export const ShortPostWrapper = styled.article`
 
 export const PostSummary = styled.span`
   margin: 0%;
-  font-size: 11pt;
+  font-size: 12pt;
   font-family: var(--font-serif);
   text-align: justify;
 `
 
 export const PostTitle = styled.div`
   font-weight: bold;
+  font-size: 14pt;
   font-family: var(--font-serif);
 `

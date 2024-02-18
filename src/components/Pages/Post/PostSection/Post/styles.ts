@@ -2,6 +2,8 @@ import { Column } from 'Components/Common/Styles/Flex/Column'
 import styled from 'styled-components';
 
 export const PostTitle = styled.h2`
+  font-size: 16pt;
+  font-weight: bold;
   font-family: var(--font-serif);
   margin: 0;
 `

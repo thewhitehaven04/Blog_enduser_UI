@@ -13,8 +13,7 @@
   "dependencies": {
     "@fontsource-variable/lora": "^5.0.9",
     "@fontsource-variable/outfit": "^5.0.8",
-    "@fontsource-variable/public-sans": "^5.0.17",
-    "@fontsource/ibm-plex-serif": "^5.0.8",
+    "@fontsource/charis-sil": "^5.0.8",
     "@fortawesome/fontawesome-common-types": "^6.5.1",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-regular-svg-icons": "^6.5.1",

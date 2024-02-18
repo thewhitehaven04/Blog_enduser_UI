@@ -22,11 +22,13 @@ export const PostPreviewPublished = styled.span`
 `
 
 export const PostPreviewHeader = styled.h1`
-  font-size: large;
+  font-size: 14pt;
+  font-weight: bold;
   font-family: var(--font-serif);
   margin: 0;
 `
 
 export const PostPreviewText = styled.div`
+  font-size: 12pt;
   font-family: var(--font-serif);
 `
