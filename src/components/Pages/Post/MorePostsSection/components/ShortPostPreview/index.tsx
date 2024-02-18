@@ -18,7 +18,7 @@ function ShortPostPreview({
   )
 }
 
-export const LoadedPostList = withLoadingOnFetch<IFormattedPostDto[]>(
+export default withLoadingOnFetch<IFormattedPostDto[]>(
   (props) => (
     <>
       {props.value.map(({ id, title, summary }) => (

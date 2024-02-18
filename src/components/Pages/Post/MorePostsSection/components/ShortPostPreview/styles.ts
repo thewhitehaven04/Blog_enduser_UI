@@ -7,9 +7,7 @@ export const LinkWrapper = styled(Link)`
 `
 
 export const ShortPostWrapper = styled.article`
-  max-height: 200px;
   max-width: 100%;
-  overflow-y: hidden;
 
   display: flex;
   flex-flow: column nowrap;
