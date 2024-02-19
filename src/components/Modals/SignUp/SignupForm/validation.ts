@@ -8,14 +8,16 @@ export const SignUpFormSchema: ObjectSchema<ISignUpForm> = object({
     .max(32)
     .test(
       'alphanumeric',
-      'Has digits, lower- and uppercase characters',
+      'Contains only digits, lower- and uppercase characters',
       (value) => {
         const hasNonWordCharacters = Boolean(value.match(/\W/))
         return !hasNonWordCharacters
       }
     ),
   email: string().required().email(),
-  password: string().required().trim().min(8).uppercase().lowercase(),
+  password: string().required().trim().min(8).test('secure password', 'Password contains upper-, lowercase charcters and digits', (value) => {
+    return value.match(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])^[^ ]+$/) !== null 
+  }),
   confirm: string()
     .required()
     .test(

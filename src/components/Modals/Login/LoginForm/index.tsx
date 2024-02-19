@@ -36,6 +36,7 @@ export function LoginForm({
     mutate(data, {
       onSuccess: () => {
         toast({ type: EToastType.SUCCESS, text: LOGIN_SUCCESS_MSG })
+        closeHandler()
       },
       onError: (err) => {
         setLoginError(err.message)
