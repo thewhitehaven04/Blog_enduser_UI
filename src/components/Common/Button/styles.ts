@@ -16,6 +16,7 @@ export const Button = styled.button`
   box-shadow: 0px 1px 3px 0.4px var(--gray-shadow);
 
   border: 1px solid var(--gray-border);
+  cursor: pointer;
 `
 
 export const RippleElement = styled.span<{ x: number; y: number }>`
