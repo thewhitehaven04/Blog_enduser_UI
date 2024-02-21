@@ -7,22 +7,21 @@ import { useEffect, type FC } from 'react'
 
 export function withLoadingOnFetch<T>(component: FC<{ value: T }>) {
   return function ({
-    isFetching,
-    isSuccess,
+    isLoading,
     error,
     data
   }: UseQueryResult<ISuccessfulResponse<T>, Error>) {
     const { toast } = useToasterEnqueue()
 
     useEffect(() => {
-        if (error != null) {
-          toast({ type: EToastType.ERROR, text: error.message })
-        }
+      if (error != null) {
+        toast({ type: EToastType.ERROR, text: error.message })
+      }
     }, [error, toast])
 
-    if (isSuccess) {
+    if (data != null) {
       return component({ value: data.data })
-    } else if (isFetching) {
+    } else if (isLoading) {
       return <SectionLoading />
     }
 

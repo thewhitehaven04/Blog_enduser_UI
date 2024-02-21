@@ -1,14 +1,16 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import {
+  keepPreviousData,
+  useQuery,
+  useQueryClient
+} from '@tanstack/react-query'
 import type { ISuccessfulPaginatedResponse } from 'Client/base/types/responses'
 import { CommentClientInstance } from 'Client/postComments'
 import {
   type ITransformedCommentDto,
   type TGetPostCommentsResponseDto
 } from 'Client/postComments/types/responses'
-import { EToastType } from 'Hooks/context/toaster/types'
 import { type IPaginationParams } from 'Hooks/pagination/types'
 import { type TUseCommentsResult } from 'Pages/Post/CommentSection/hooks/queryComments/types'
-import { useToasterEnqueue } from 'Hooks/toasterEnqueue'
 
 export const CommentsQueryKey = ({
   postId,
